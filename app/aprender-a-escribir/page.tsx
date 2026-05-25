@@ -128,12 +128,20 @@ export default function AprenderPage() {
               color: "var(--ink)",
               margin: 0,
             }}>
-              ¿Tenés algo que querés escribir y no sabés por dónde empezar?
+              ¿Tenés algo que querés escribir y no sabés{" "}
+              <span style={{
+                background: "var(--orange)",
+                color: "white",
+                padding: "4px 10px",
+                display: "inline",
+                WebkitBoxDecorationBreak: "clone",
+                boxDecorationBreak: "clone",
+              }}>por dónde empezar?</span>
             </h1>
 
             <span style={{
               fontFamily: "var(--font-script), 'Caveat', cursive",
-              fontStyle: "normal",
+              fontStyle: "italic",
               fontWeight: 700,
               fontSize: "clamp(32px, 5vw, 63px)",
               color: "var(--orange-dark)",
