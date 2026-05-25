@@ -120,20 +120,20 @@ export default function AprenderPage() {
             <SectionLabel text="Quiero aprender a escribir" color="yellow" />
 
             <h1 style={{
-              fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-              fontWeight: 400,
-              fontSize: "clamp(32px, 4.5vw, 60px)",
-              lineHeight: 1.05,
-              letterSpacing: "-0.3px",
+              fontFamily: "var(--font-body), 'Inter', sans-serif",
+              fontWeight: 700,
+              fontSize: "clamp(40px, 6.5vw, 82px)",
+              lineHeight: 1.0,
               color: "var(--ink)",
               margin: 0,
             }}>
               ¿Tenés algo que querés escribir y no sabés{" "}
               <span style={{
                 background: "var(--orange)",
-                color: "white",
-                padding: "4px 10px",
+                color: "var(--cream)",
+                padding: "0 6px",
                 display: "inline",
+                borderRadius: 0,
                 WebkitBoxDecorationBreak: "clone",
                 boxDecorationBreak: "clone",
               }}>por dónde empezar?</span>
@@ -143,9 +143,10 @@ export default function AprenderPage() {
               fontFamily: "var(--font-script), 'Caveat', cursive",
               fontStyle: "italic",
               fontWeight: 700,
-              fontSize: "clamp(32px, 5vw, 63px)",
+              fontSize: "clamp(36px, 5.5vw, 72px)",
               color: "var(--orange-dark)",
               lineHeight: 1.2,
+              display: "block",
             }}>
               Lo entiendo mejor de lo que pensás.
             </span>
