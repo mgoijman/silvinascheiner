@@ -15,17 +15,20 @@ export default function SectionLabel({ text, color = "orange" }: SectionLabelPro
   return (
     <span
       style={{
-        display: "inline-block",
+        display: "inline-flex",
+        alignItems: "center",
+        alignSelf: "flex-start",
         background: styles.background,
         color: styles.color,
         border: "2px solid var(--ink)",
-        borderRadius: 0,
+        borderRadius: "0px",
         padding: "4px 12px",
         fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-        fontSize: "13px",
-        fontWeight: 900,
-        letterSpacing: "0.3px",
-        textTransform: "uppercase",
+        fontSize: "14px",
+        fontWeight: 400,
+        letterSpacing: "normal",
+        textTransform: "none",
+        whiteSpace: "nowrap",
       }}
     >
       {text}

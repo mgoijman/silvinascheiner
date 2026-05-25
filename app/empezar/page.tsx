@@ -100,9 +100,9 @@ export default function EmpezarPage() {
             <div style={{ paddingTop: 28 }}>
               <p
                 style={{
-                  fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
+                  fontFamily: "var(--font-body), 'Inter', sans-serif",
                   fontSize: 11,
-                  fontWeight: 900,
+                  fontWeight: 600,
                   letterSpacing: "1.5px",
                   textTransform: "uppercase",
                   color: "rgba(255,255,255,0.65)",
@@ -200,9 +200,9 @@ export default function EmpezarPage() {
             <div style={{ paddingTop: 28 }}>
               <p
                 style={{
-                  fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
+                  fontFamily: "var(--font-body), 'Inter', sans-serif",
                   fontSize: 11,
-                  fontWeight: 900,
+                  fontWeight: 600,
                   letterSpacing: "1.5px",
                   textTransform: "uppercase",
                   color: "var(--muted-ink)",

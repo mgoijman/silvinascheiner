@@ -30,7 +30,9 @@ const config: Config = {
         script:  ["var(--font-script)", "Caveat", "cursive"],
       },
       borderRadius: {
-        brand: "24px",
+        brand:  "24px",
+        card:   "28px",
+        pill:   "9999px",
       },
       borderWidth: {
         "3": "3px",

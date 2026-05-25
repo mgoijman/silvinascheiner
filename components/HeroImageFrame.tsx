@@ -9,7 +9,7 @@ export default function HeroImageFrame({ children }: HeroImageFrameProps) {
     <div
       style={{
         position: "relative",
-        borderRadius: "var(--radius)",
+        borderRadius: "var(--radius-card)",
         border: "2px solid var(--ink)",
         background: "var(--offwhite)",
         aspectRatio: "3/4",
@@ -20,7 +20,7 @@ export default function HeroImageFrame({ children }: HeroImageFrameProps) {
     >
       <div
         style={{
-          borderRadius: "calc(var(--radius) - 2px)",
+          borderRadius: "calc(var(--radius-card) - 2px)",
           overflow: "hidden",
           width: "100%",
           height: "100%",

@@ -1,14 +1,15 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const navLinks = [
   { href: "/",                     label: "Inicio" },
   { href: "/leer",                 label: "Quiero leer" },
-  { href: "/aprender-a-escribir",  label: "Aprendo a escribir" },
-  { href: "/sobre",                label: "Conocé a Silvina" },
+  { href: "/aprender-a-escribir",  label: "Quiero aprender a escribir" },
+  { href: "/sobre",                label: "Quiero conocer a Silvina" },
 ];
 
 export default function Navbar() {
@@ -48,25 +49,14 @@ export default function Navbar() {
             flexShrink: 0,
           }}
         >
-          <div
-            style={{
-              width: 38,
-              height: 38,
-              borderRadius: "50%",
-              background: "var(--yellow)",
-              border: "2px solid var(--ink)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-              fontWeight: 900,
-              fontSize: 18,
-              color: "var(--ink)",
-              flexShrink: 0,
-            }}
-          >
-            S!
-          </div>
+          <Image
+            src="/images/logo/logo-icon.png"
+            alt="Silvina Scheiner"
+            width={40}
+            height={40}
+            style={{ objectFit: "contain", flexShrink: 0 }}
+            priority
+          />
           <span
             style={{
               fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
@@ -94,9 +84,9 @@ export default function Navbar() {
                 key={href}
                 href={href}
                 style={{
-                  fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
+                  fontFamily: "var(--font-body), 'Inter', sans-serif",
                   fontSize: 11,
-                  fontWeight: 900,
+                  fontWeight: 600,
                   textTransform: "uppercase",
                   letterSpacing: "0.8px",
                   color: "var(--ink)",
@@ -198,9 +188,9 @@ export default function Navbar() {
                 href={href}
                 onClick={() => setOpen(false)}
                 style={{
-                  fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
+                  fontFamily: "var(--font-body), 'Inter', sans-serif",
                   fontSize: 14,
-                  fontWeight: 900,
+                  fontWeight: 600,
                   textTransform: "uppercase",
                   letterSpacing: "0.8px",
                   color: "var(--ink)",

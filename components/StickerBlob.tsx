@@ -56,7 +56,7 @@ export default function StickerBlob({
         clipPath: shape,
         transform: `rotate(${rotate}deg)`,
         fontFamily: "var(--font-script), 'Caveat', cursive",
-        fontSize: Math.round(size * 0.155),
+        fontSize: Math.round(size * 0.22),
         fontWeight: 400,
         textAlign: "center",
         lineHeight: 1.25,

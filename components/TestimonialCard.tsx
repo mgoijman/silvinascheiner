@@ -29,7 +29,7 @@ export default function TestimonialCard({
         background,
         color: textColor,
         border: "2px solid var(--ink)",
-        borderRadius: 16,
+        borderRadius: "var(--radius-card)",
         padding: "28px 28px 24px",
         display: "flex",
         flexDirection: "column",

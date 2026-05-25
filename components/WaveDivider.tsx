@@ -1,18 +1,19 @@
 export default function WaveDivider() {
   return (
-    <div
-      style={{
-        fontSize: 36,
-        color: "var(--orange-dark)",
-        fontFamily: "var(--font-script), 'Caveat', cursive",
-        lineHeight: 1,
-        marginTop: 8,
-        marginBottom: 8,
-        userSelect: "none",
-      }}
+    <svg
+      viewBox="0 0 240 28"
+      width="220"
+      height="20"
       aria-hidden="true"
+      style={{ display: "block", marginTop: 4, marginBottom: 4, flexShrink: 0 }}
     >
-      ～～～
-    </div>
+      <path
+        d="M4 14 Q20 2 36 14 T68 14 T100 14 T132 14 T164 14 T196 14 T228 14"
+        fill="none"
+        stroke="#e87737"
+        strokeWidth="4"
+        strokeLinecap="round"
+      />
+    </svg>
   );
 }

@@ -262,7 +262,7 @@ export default function HomePage() {
                 position: "relative",
                 background: "var(--orange)",
                 border: "2px solid var(--ink)",
-                borderRadius: "var(--radius)",
+                borderRadius: "var(--radius-card)",
                 padding: "40px 32px 36px",
                 display: "flex",
                 flexDirection: "column",
@@ -323,7 +323,7 @@ export default function HomePage() {
                 position: "relative",
                 background: "var(--green-soft)",
                 border: "2px solid var(--ink)",
-                borderRadius: "var(--radius)",
+                borderRadius: "var(--radius-card)",
                 padding: "40px 32px 36px",
                 display: "flex",
                 flexDirection: "column",
@@ -436,8 +436,9 @@ export default function HomePage() {
             <h2
               style={{
                 fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-                fontWeight: 700,
+                fontWeight: 400,
                 fontSize: "clamp(28px, 4vw, 46px)",
+                letterSpacing: "-0.24px",
                 color: "var(--ink)",
                 margin: 0,
                 lineHeight: 1.1,
@@ -504,8 +505,9 @@ export default function HomePage() {
             <h2
               style={{
                 fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-                fontWeight: 700,
+                fontWeight: 400,
                 fontSize: "clamp(28px, 4vw, 46px)",
+                letterSpacing: "-0.24px",
                 color: "var(--ink)",
                 margin: 0,
                 lineHeight: 1.1,
@@ -571,7 +573,7 @@ export default function HomePage() {
             style={{
               position: "relative",
               border: "2px solid var(--cream)",
-              borderRadius: "var(--radius)",
+              borderRadius: "var(--radius-card)",
               padding: "64px 48px",
               display: "flex",
               flexDirection: "column",
@@ -594,8 +596,9 @@ export default function HomePage() {
             <h2
               style={{
                 fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-                fontWeight: 700,
+                fontWeight: 400,
                 fontSize: "clamp(32px, 5vw, 56px)",
+                letterSpacing: "-0.24px",
                 color: "var(--cream)",
                 margin: 0,
                 lineHeight: 1.1,

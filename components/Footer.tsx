@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -30,25 +31,13 @@ export default function Footer() {
               textDecoration: "none",
             }}
           >
-            <div
-              style={{
-                width: 40,
-                height: 40,
-                borderRadius: "50%",
-                background: "var(--yellow)",
-                border: "2px solid var(--cream)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-                fontWeight: 900,
-                fontSize: 18,
-                color: "var(--ink)",
-                flexShrink: 0,
-              }}
-            >
-              S!
-            </div>
+            <Image
+              src="/images/logo/logo-icon.png"
+              alt="Silvina Scheiner"
+              width={40}
+              height={40}
+              style={{ objectFit: "contain", flexShrink: 0 }}
+            />
             <span
               style={{
                 fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
@@ -95,8 +84,8 @@ export default function Footer() {
         <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
           <h3
             style={{
-              fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-              fontWeight: 900,
+              fontFamily: "var(--font-body), 'Inter', sans-serif",
+              fontWeight: 600,
               fontSize: 13,
               textTransform: "uppercase",
               letterSpacing: "1px",
@@ -134,8 +123,8 @@ export default function Footer() {
         <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
           <h3
             style={{
-              fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-              fontWeight: 900,
+              fontFamily: "var(--font-body), 'Inter', sans-serif",
+              fontWeight: 600,
               fontSize: 13,
               textTransform: "uppercase",
               letterSpacing: "1px",
@@ -239,7 +228,7 @@ export default function Footer() {
             margin: 0,
           }}
         >
-          Hecho con palabras, desde Argentina. 🇦🇷
+          Hecho con palabras, desde Argentina.
         </p>
       </div>
     </footer>
