@@ -105,6 +105,7 @@ export default function Navbar() {
                   borderRadius: 9999,
                   background: active ? "var(--yellow)" : "transparent",
                   transition: "background 0.15s",
+                  whiteSpace: "nowrap",
                 }}
               >
                 {label}
@@ -207,6 +208,7 @@ export default function Navbar() {
                   padding: "10px 14px",
                   borderRadius: 8,
                   background: active ? "var(--yellow)" : "transparent",
+                  whiteSpace: "nowrap",
                 }}
               >
                 {label}

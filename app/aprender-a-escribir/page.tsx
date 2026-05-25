@@ -116,7 +116,7 @@ export default function AprenderPage() {
             <h1
               style={{
                 fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-                fontWeight: 900,
+                fontWeight: 700,
                 fontSize: "clamp(32px, 4.5vw, 58px)",
                 lineHeight: 1.1,
                 color: "var(--ink)",
@@ -239,7 +239,7 @@ export default function AprenderPage() {
             <h2
               style={{
                 fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-                fontWeight: 900,
+                fontWeight: 700,
                 fontSize: "clamp(30px, 4vw, 48px)",
                 color: "var(--ink)",
                 margin: 0,
@@ -301,7 +301,7 @@ export default function AprenderPage() {
                   />
                 </div>
 
-                <div style={{ paddingTop: 8 }}>
+                <div style={{ paddingTop: 24 }}>
                   <p
                     style={{
                       fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
@@ -318,7 +318,7 @@ export default function AprenderPage() {
                   <h3
                     style={{
                       fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-                      fontWeight: 900,
+                      fontWeight: 700,
                       fontSize: 24,
                       color: opt.textColor,
                       margin: 0,
@@ -402,7 +402,7 @@ export default function AprenderPage() {
             <h2
               style={{
                 fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-                fontWeight: 900,
+                fontWeight: 700,
                 fontSize: "clamp(26px, 4vw, 40px)",
                 color: "var(--ink)",
                 margin: 0,

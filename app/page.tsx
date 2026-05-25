@@ -28,7 +28,7 @@ export default function HomePage() {
           <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
             <SectionLabel text="Silvina Scheiner · Escritora" color="green" />
 
-            <h1 className="mt-6 font-display text-5xl leading-[0.95] text-[var(--ink)] md:text-7xl">
+            <h1 className="mt-6 font-display font-bold text-5xl leading-[0.95] text-[var(--ink)] md:text-7xl">
               Hay historias<br />
               que <span className="tape tape-orange">piden</span> ser<br />
               <span
@@ -224,7 +224,7 @@ export default function HomePage() {
             <h2
               style={{
                 fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-                fontWeight: 900,
+                fontWeight: 700,
                 fontSize: "clamp(32px, 5vw, 52px)",
                 color: "var(--ink)",
                 margin: 0,
@@ -275,12 +275,12 @@ export default function HomePage() {
               <h3
                 style={{
                   fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-                  fontWeight: 900,
+                  fontWeight: 700,
                   fontSize: 26,
                   color: "white",
                   margin: 0,
                   lineHeight: 1.2,
-                  paddingTop: 12,
+                  paddingTop: 36,
                 }}
               >
                 Sumergite en Distancias del corazón
@@ -336,12 +336,12 @@ export default function HomePage() {
               <h3
                 style={{
                   fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-                  fontWeight: 900,
+                  fontWeight: 700,
                   fontSize: 26,
                   color: "var(--ink)",
                   margin: 0,
                   lineHeight: 1.2,
-                  paddingTop: 12,
+                  paddingTop: 36,
                 }}
               >
                 Encontrá tu voz y empezá a escribir
@@ -436,7 +436,7 @@ export default function HomePage() {
             <h2
               style={{
                 fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-                fontWeight: 900,
+                fontWeight: 700,
                 fontSize: "clamp(28px, 4vw, 46px)",
                 color: "var(--ink)",
                 margin: 0,
@@ -504,7 +504,7 @@ export default function HomePage() {
             <h2
               style={{
                 fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-                fontWeight: 900,
+                fontWeight: 700,
                 fontSize: "clamp(28px, 4vw, 46px)",
                 color: "var(--ink)",
                 margin: 0,
@@ -594,7 +594,7 @@ export default function HomePage() {
             <h2
               style={{
                 fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-                fontWeight: 900,
+                fontWeight: 700,
                 fontSize: "clamp(32px, 5vw, 56px)",
                 color: "var(--cream)",
                 margin: 0,

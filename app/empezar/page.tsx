@@ -23,7 +23,7 @@ export default function EmpezarPage() {
           <h1
             style={{
               fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-              fontWeight: 900,
+              fontWeight: 700,
               fontSize: "clamp(40px, 6vw, 72px)",
               lineHeight: 1.05,
               color: "var(--ink)",
@@ -97,7 +97,7 @@ export default function EmpezarPage() {
               <StickerBlob text={"Opción\n1"} color="yellow" rotate={-8} size={96} />
             </div>
 
-            <div style={{ paddingTop: 8 }}>
+            <div style={{ paddingTop: 28 }}>
               <p
                 style={{
                   fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
@@ -114,7 +114,7 @@ export default function EmpezarPage() {
               <h2
                 style={{
                   fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-                  fontWeight: 900,
+                  fontWeight: 700,
                   fontSize: "clamp(28px, 4vw, 40px)",
                   color: "white",
                   margin: 0,
@@ -197,7 +197,7 @@ export default function EmpezarPage() {
               <StickerBlob text={"Opción\n2"} color="orange" rotate={8} size={96} />
             </div>
 
-            <div style={{ paddingTop: 8 }}>
+            <div style={{ paddingTop: 28 }}>
               <p
                 style={{
                   fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
@@ -214,7 +214,7 @@ export default function EmpezarPage() {
               <h2
                 style={{
                   fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-                  fontWeight: 900,
+                  fontWeight: 700,
                   fontSize: "clamp(28px, 4vw, 40px)",
                   color: "var(--ink)",
                   margin: 0,

@@ -60,7 +60,7 @@ export default function LeerPage() {
             <h1
               style={{
                 fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-                fontWeight: 900,
+                fontWeight: 700,
                 fontSize: "clamp(44px, 6vw, 72px)",
                 lineHeight: 1.05,
                 color: "var(--ink)",
@@ -134,10 +134,10 @@ export default function LeerPage() {
             <div style={{ position: "relative", width: "100%", maxWidth: 420 }}>
               <HeroImageFrame>
                 <Image
-                  src="/images/book/book-cover.png"
+                  src="/images/book/book-mockup-1.png"
                   alt="Distancias del corazón — libro de Silvina Scheiner"
                   fill
-                  style={{ objectFit: "cover", objectPosition: "center" }}
+                  style={{ objectFit: "contain", objectPosition: "center" }}
                   priority
                 />
               </HeroImageFrame>
@@ -201,7 +201,7 @@ export default function LeerPage() {
             <h2
               style={{
                 fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-                fontWeight: 900,
+                fontWeight: 700,
                 fontSize: "clamp(28px, 4vw, 44px)",
                 color: "var(--ink)",
                 margin: 0,
@@ -283,7 +283,7 @@ export default function LeerPage() {
             <h2
               style={{
                 fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-                fontWeight: 900,
+                fontWeight: 700,
                 fontSize: "clamp(28px, 4vw, 46px)",
                 color: "var(--ink)",
                 margin: 0,
@@ -353,7 +353,7 @@ export default function LeerPage() {
                 <h3
                   style={{
                     fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-                    fontWeight: 900,
+                    fontWeight: 700,
                     fontSize: 24,
                     color: "white",
                     margin: 0,
@@ -370,7 +370,7 @@ export default function LeerPage() {
                 <h3
                   style={{
                     fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-                    fontWeight: 900,
+                    fontWeight: 700,
                     fontSize: 26,
                     color: "white",
                     margin: 0,
@@ -485,7 +485,7 @@ export default function LeerPage() {
           <h2
             style={{
               fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-              fontWeight: 900,
+              fontWeight: 700,
               fontSize: "clamp(28px, 4vw, 46px)",
               color: "var(--ink)",
               margin: 0,

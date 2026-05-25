@@ -60,7 +60,7 @@ export default function SobrePage() {
             <h1
               style={{
                 fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-                fontWeight: 900,
+                fontWeight: 700,
                 fontSize: "clamp(32px, 4.5vw, 60px)",
                 lineHeight: 1.05,
                 color: "var(--ink)",
@@ -154,7 +154,7 @@ export default function SobrePage() {
             <h2
               style={{
                 fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-                fontWeight: 900,
+                fontWeight: 700,
                 fontSize: "clamp(26px, 3.5vw, 40px)",
                 color: "var(--ink)",
                 margin: 0,
@@ -255,7 +255,7 @@ export default function SobrePage() {
             <h2
               style={{
                 fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-                fontWeight: 900,
+                fontWeight: 700,
                 fontSize: "clamp(26px, 4vw, 40px)",
                 color: "var(--ink)",
                 margin: 0,
@@ -332,7 +332,7 @@ export default function SobrePage() {
           <h2
             style={{
               fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-              fontWeight: 900,
+              fontWeight: 700,
               fontSize: "clamp(28px, 4vw, 44px)",
               color: "var(--ink)",
               margin: 0,

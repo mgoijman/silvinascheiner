@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Archivo_Black, Inter, Caveat } from "next/font/google";
+import { Archivo, Inter, Caveat } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppFAB from "@/components/WhatsAppFAB";
 
-const archivoBlack = Archivo_Black({
-  weight: "400",
+const archivoBlack = Archivo({
+  weight: ["700", "800", "900"],
   subsets: ["latin"],
   variable: "--font-display",
   display: "swap",
