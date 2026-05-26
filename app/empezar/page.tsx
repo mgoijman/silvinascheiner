@@ -33,7 +33,7 @@ export default function EmpezarPage() {
             ¿Qué querés hacer{" "}
             <span
               style={{
-                fontFamily: "var(--font-script), 'Dancing Script', cursive",
+                fontFamily: "var(--font-script), 'Caveat', cursive",
                 fontStyle: "italic",
                 color: "var(--orange-dark)",
               }}
@@ -295,7 +295,7 @@ export default function EmpezarPage() {
         <div style={{ maxWidth: 580, margin: "0 auto", display: "flex", flexDirection: "column", gap: 16, alignItems: "center" }}>
           <p
             style={{
-              fontFamily: "var(--font-script), 'Dancing Script', cursive",
+              fontFamily: "var(--font-script), 'Caveat', cursive",
               fontStyle: "italic",
               fontSize: "clamp(28px, 4vw, 42px)",
               color: "var(--yellow)",

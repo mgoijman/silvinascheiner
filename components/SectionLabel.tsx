@@ -25,10 +25,12 @@ export default function SectionLabel({ text, color = "orange" }: SectionLabelPro
         padding: "4px 12px",
         fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
         fontSize: "14px",
-        fontWeight: 400,
-        letterSpacing: "normal",
+        fontWeight: 700,
+        letterSpacing: "0.35px",
         textTransform: "none",
         whiteSpace: "nowrap",
+        boxShadow: "3px 3px 0 var(--ink)",
+        transform: "rotate(-3deg)",
       }}
     >
       {text}

@@ -8,6 +8,11 @@ import StickerBlob from "@/components/StickerBlob";
 import WaveDivider from "@/components/WaveDivider";
 import HeroImageFrame from "@/components/HeroImageFrame";
 
+const WA_FISICO =
+  "https://wa.me/5491100000000?text=Hola%20Silvina%2C%20me%20interesa%20comprar%20el%20libro%20f%C3%ADsico%20de%20Distancias%20del%20coraz%C3%B3n.%20%C2%BFC%C3%BAl%20es%20el%20precio%20y%20c%C3%B3mo%20es%20el%20env%C3%ADo%3F";
+const WA_AUDIO =
+  "https://wa.me/5491100000000?text=Hola%20Silvina%2C%20me%20interesa%20el%20audiolibro%20de%20Distancias%20del%20coraz%C3%B3n.%20%C2%BFCu%C3%A1ndo%20va%20a%20estar%20disponible%3F";
+
 const labelStyle: React.CSSProperties = {
   fontFamily: "var(--font-body), 'Inter', sans-serif",
   fontSize: 11,
@@ -61,7 +66,7 @@ export default function LeerPage() {
             <SectionLabel text="Quiero leer" color="orange" />
             <h1 style={{ fontFamily: "var(--font-display), 'Archivo Black', sans-serif", fontWeight: 400, fontSize: "clamp(44px, 6vw, 72px)", lineHeight: 1.05, letterSpacing: "-0.3px", color: "var(--ink)", margin: 0 }}>
               Distancias<br />
-              <span style={{ fontFamily: "var(--font-script), 'Dancing Script', cursive", fontStyle: "italic", color: "var(--orange-dark)", fontSize: "0.95em" }}>del corazón</span>
+              <span style={{ fontFamily: "var(--font-script), 'Caveat', cursive", fontStyle: "italic", color: "var(--orange-dark)", fontSize: "0.95em" }}>del corazón</span>
             </h1>
             <WaveDivider />
             <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", fontSize: 18, lineHeight: 1.7, color: "var(--body)", margin: 0, maxWidth: 500 }}>
@@ -69,7 +74,7 @@ export default function LeerPage() {
             </p>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
               <a href="#primer-capitulo" className="btn-primary">DESCARGAR PRIMER CAPÍTULO</a>
-              <a href="#comprar" className="btn-secondary">COMPRAR EL LIBRO</a>
+              <Link href="/comprar" className="btn-secondary">COMPRAR EL LIBRO</Link>
             </div>
             <a href="#hijos-golondrina" style={{ fontFamily: "var(--font-body), 'Inter', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: "0.5px", textTransform: "uppercase", color: "var(--ink)", textDecoration: "none" }}>
               CONOCER HIJOS GOLONDRINA →
@@ -78,7 +83,7 @@ export default function LeerPage() {
           <div style={{ display: "flex", justifyContent: "center" }}>
             <div style={{ position: "relative", width: "100%", maxWidth: 420 }}>
               <HeroImageFrame>
-                <Image src="/images/book/book-mockup-1.png" alt="Distancias del corazón — libro de Silvina Scheiner" fill style={{ objectFit: "contain", objectPosition: "center" }} priority />
+                <Image src="/images/book/book-fisico.png" alt="Distancias del corazón — libro de Silvina Scheiner" fill style={{ objectFit: "cover", objectPosition: "center" }} priority />
               </HeroImageFrame>
               <div style={{ position: "absolute", top: -20, left: -20, zIndex: 10 }}>
                 <StickerBlob text={"Cap. 1\ngratis"} color="yellow" rotate={-10} />
@@ -93,7 +98,7 @@ export default function LeerPage() {
         <div style={{ maxWidth: 800, margin: "0 auto", display: "flex", flexDirection: "column", gap: 24 }}>
           <h2 style={{ fontFamily: "var(--font-display), 'Archivo Black', sans-serif", fontWeight: 400, fontSize: "clamp(32px, 5vw, 56px)", letterSpacing: "-0.24px", color: "var(--cream)", margin: 0, lineHeight: 1.1 }}>
             Si extrañar pesa,{" "}
-            <span style={{ fontFamily: "var(--font-script), 'Dancing Script', cursive", fontStyle: "italic", color: "var(--yellow)" }}>acá vas a encontrar palabras.</span>
+            <span style={{ fontFamily: "var(--font-script), 'Caveat', cursive", fontStyle: "italic", color: "var(--yellow)" }}>acá vas a encontrar palabras.</span>
           </h2>
           <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", fontSize: 17, lineHeight: 1.75, color: "rgba(253,246,227,0.8)", margin: 0, maxWidth: 640 }}>
             <em>Distancias del corazón</em> nació de un viaje, de una hija viviendo lejos y de una charla pendiente. Es para madres, padres, hijas, hijos y lectores que conocen de cerca el amor a la distancia.
@@ -111,7 +116,7 @@ export default function LeerPage() {
             <SectionLabel text="Primer paso" color="orange" />
             <h2 style={{ fontFamily: "var(--font-display), 'Archivo Black', sans-serif", fontWeight: 400, fontSize: "clamp(28px, 4vw, 46px)", letterSpacing: "-0.24px", color: "var(--ink)", margin: 0, lineHeight: 1.1 }}>
               Leé antes de{" "}
-              <span style={{ fontFamily: "var(--font-script), 'Dancing Script', cursive", fontStyle: "italic", color: "var(--orange-dark)" }}>decidir.</span>
+              <span style={{ fontFamily: "var(--font-script), 'Caveat', cursive", fontStyle: "italic", color: "var(--orange-dark)" }}>decidir.</span>
             </h2>
             <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", fontSize: 17, lineHeight: 1.7, color: "var(--body)", margin: 0 }}>
               Si el tema te toca, empezá por el primer capítulo. Te llega por email para que puedas leerlo con calma, desde donde estés.
@@ -124,7 +129,7 @@ export default function LeerPage() {
           <div style={{ background: "var(--orange)", border: "2px solid var(--ink)", borderRadius: "var(--radius-card)", padding: "36px", display: "flex", flexDirection: "column", gap: 16, boxShadow: "6px 6px 0 var(--ink)" }}>
             {cap1Sent ? (
               <div style={{ textAlign: "center", padding: "24px 0", display: "flex", flexDirection: "column", gap: 16 }}>
-                <p style={{ fontFamily: "var(--font-script), 'Dancing Script', cursive", fontStyle: "italic", fontSize: 36, color: "white", margin: 0 }}>¡Ya está en camino!</p>
+                <p style={{ fontFamily: "var(--font-script), 'Caveat', cursive", fontStyle: "italic", fontSize: 36, color: "white", margin: 0 }}>¡Ya está en camino!</p>
                 <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", color: "rgba(255,255,255,0.9)", fontSize: 16, margin: 0, lineHeight: 1.6 }}>
                   Revisá tu bandeja — el primer capítulo de <em>Distancias del corazón</em> llega en minutos.
                 </p>
@@ -166,7 +171,7 @@ export default function LeerPage() {
             <SectionLabel text="¿De qué se trata?" color="yellow" />
             <h2 style={{ fontFamily: "var(--font-display), 'Archivo Black', sans-serif", fontWeight: 400, fontSize: "clamp(28px, 4vw, 44px)", letterSpacing: "-0.24px", color: "var(--ink)", margin: 0, lineHeight: 1.1 }}>
               Un viaje al{" "}
-              <span style={{ fontFamily: "var(--font-script), 'Dancing Script', cursive", fontStyle: "italic", color: "var(--orange-dark)" }}>otro lado del mundo.</span>
+              <span style={{ fontFamily: "var(--font-script), 'Caveat', cursive", fontStyle: "italic", color: "var(--orange-dark)" }}>otro lado del mundo.</span>
             </h2>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 8 }}>
               {["Vínculos a distancia", "Familia", "Migración", "Historias reales"].map(tag => <ThemeTag key={tag} text={tag} />)}
@@ -187,45 +192,84 @@ export default function LeerPage() {
       {/* ── COMPRAR EL LIBRO ─────────────────────────────────── */}
       <section id="comprar" style={{ background: "var(--cream)", borderBottom: "2px solid var(--ink)", padding: "80px 24px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <div style={{ marginBottom: 40 }}>
+          <div style={{ marginBottom: 48, display: "flex", flexDirection: "column", gap: 12 }}>
             <SectionLabel text="Comprar el libro" color="orange" />
-            <h2 style={{ fontFamily: "var(--font-display), 'Archivo Black', sans-serif", fontWeight: 400, fontSize: "clamp(26px, 3.5vw, 40px)", letterSpacing: "-0.24px", color: "var(--ink)", margin: "16px 0 8px", lineHeight: 1.1 }}>
+            <h2 style={{ fontFamily: "var(--font-display), 'Archivo Black', sans-serif", fontWeight: 400, fontSize: "clamp(28px, 4vw, 46px)", letterSpacing: "-0.24px", color: "var(--ink)", margin: 0, lineHeight: 1.1 }}>
               Elegí el formato que{" "}
-              <span style={{ fontFamily: "var(--font-script), 'Dancing Script', cursive", fontStyle: "italic", color: "var(--orange-dark)" }}>más te guste.</span>
+              <span style={{ fontFamily: "var(--font-script), 'Caveat', cursive", fontStyle: "italic", color: "var(--orange-dark)" }}>más te guste.</span>
             </h2>
-            <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", fontSize: 16, color: "var(--body)", margin: 0 }}>
-              Podés comprar <em>Distancias del corazón</em> en formato digital, físico o audiolibro. Si no sabés cuál elegir, escribime y te oriento.
-            </p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20 }} className="options-grid">
-            {[
-              { title: "Consultar por WhatsApp", desc: "Si dudás, te ayudo a elegir.", href: "https://wa.me/5491100000000", orange: true },
-              { title: "Comprar digital", desc: "Llega a tu mail al instante.", href: "https://www.mercadopago.com.ar", orange: false },
-              { title: "Comprar físico", desc: "Envíos a todo el país.", href: "https://www.mercadopago.com.ar", orange: false },
-              { title: "Comprar audiolibro", desc: "Para escuchar donde estés.", href: "https://www.mercadopago.com.ar", orange: false },
-            ].map(({ title, desc, href, orange }) => (
-              <a key={title} href={href} target="_blank" rel="noopener noreferrer" style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                gap: 16,
-                borderRadius: "var(--radius-card)",
-                border: "2px solid var(--ink)",
-                background: orange ? "var(--orange)" : "white",
-                padding: "24px",
-                boxShadow: "4px 4px 0 var(--ink)",
-                textDecoration: "none",
-                minHeight: 180,
-                transition: "transform 0.15s",
-              }}>
-                <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                  <p style={{ fontFamily: "var(--font-display), 'Archivo Black', sans-serif", fontWeight: 700, fontSize: 18, color: orange ? "white" : "var(--ink)", margin: 0, lineHeight: 1.2 }}>{title}</p>
-                  <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", fontSize: 14, color: orange ? "rgba(255,255,255,0.85)" : "var(--body)", margin: 0, lineHeight: 1.5 }}>{desc}</p>
+          <div className="formats-grid">
+            {/* ── Digital ── */}
+            <div style={{ position: "relative", background: "var(--orange)", border: "2px solid var(--ink)", borderRadius: "var(--radius-card)", overflow: "hidden", display: "flex", flexDirection: "column", boxShadow: "6px 6px 0 var(--ink)" }}>
+              <span style={{ position: "absolute", top: 12, left: 12, zIndex: 2, background: "var(--yellow)", color: "var(--ink)", border: "2px solid var(--ink)", padding: "2px 12px", fontSize: 11, fontWeight: 700, letterSpacing: "0.5px", textTransform: "uppercase", fontFamily: "var(--font-body), Inter, sans-serif" }}>
+                Más elegido
+              </span>
+              <div style={{ position: "relative", height: 220, background: "rgba(0,0,0,0.12)", flexShrink: 0 }}>
+                <Image src="/images/book/book-digital.png" alt="Distancias del corazón — formato digital" fill style={{ objectFit: "cover", objectPosition: "center top" }} />
+              </div>
+              <div style={{ padding: "24px 24px 28px", display: "flex", flexDirection: "column", gap: 14, flexGrow: 1 }}>
+                <div>
+                  <p style={{ fontFamily: "var(--font-display), 'Archivo Black', sans-serif", fontSize: 22, color: "white", margin: "0 0 4px", fontWeight: 700 }}>Digital</p>
+                  <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", fontSize: 13, color: "rgba(255,255,255,0.7)", margin: 0 }}>PDF · enviado por email</p>
                 </div>
-                <span style={{ fontFamily: "var(--font-body), Inter, sans-serif", fontSize: 14, fontWeight: 700, color: orange ? "white" : "var(--orange-dark)" }}>IR →</span>
-              </a>
-            ))}
+                <p style={{ fontFamily: "var(--font-display), 'Archivo Black', sans-serif", fontSize: 34, color: "white", margin: 0, fontWeight: 700, lineHeight: 1 }}>
+                  $20.000{" "}
+                  <span style={{ fontSize: 14, opacity: 0.7, fontWeight: 400, fontFamily: "var(--font-body), Inter, sans-serif" }}>ARS</span>
+                </p>
+                <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", fontSize: 14, color: "rgba(255,255,255,0.85)", margin: 0, lineHeight: 1.6 }}>
+                  Recibís el libro completo en tu email al instante, desde cualquier parte del mundo.
+                </p>
+                <Link href="/comprar" className="btn-dark" style={{ textAlign: "center", marginTop: "auto" }}>
+                  COMPRAR DIGITAL
+                </Link>
+              </div>
+            </div>
+
+            {/* ── Físico ── */}
+            <div style={{ background: "white", border: "2px solid var(--ink)", borderRadius: "var(--radius-card)", overflow: "hidden", display: "flex", flexDirection: "column", boxShadow: "4px 4px 0 var(--ink)" }}>
+              <div style={{ position: "relative", height: 220, background: "var(--offwhite)", flexShrink: 0 }}>
+                <Image src="/images/book/book-fisico.png" alt="Distancias del corazón — ejemplar físico" fill style={{ objectFit: "cover", objectPosition: "center top" }} />
+              </div>
+              <div style={{ padding: "24px 24px 28px", display: "flex", flexDirection: "column", gap: 14, flexGrow: 1 }}>
+                <div>
+                  <p style={{ fontFamily: "var(--font-display), 'Archivo Black', sans-serif", fontSize: 22, color: "var(--ink)", margin: "0 0 4px", fontWeight: 700 }}>Físico</p>
+                  <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", fontSize: 13, color: "var(--muted-ink)", margin: 0 }}>Libro impreso · solo Argentina</p>
+                </div>
+                <p style={{ fontFamily: "var(--font-display), 'Archivo Black', sans-serif", fontSize: 26, color: "var(--ink)", margin: 0, fontWeight: 700, lineHeight: 1 }}>
+                  Consultá precio
+                </p>
+                <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", fontSize: 14, color: "var(--body)", margin: 0, lineHeight: 1.6 }}>
+                  El libro en papel, enviado a tu puerta. Envíos por Correo Argentino o Andreani a todo el país.
+                </p>
+                <a href={WA_FISICO} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ textAlign: "center", marginTop: "auto" }}>
+                  CONSULTAR POR WHATSAPP
+                </a>
+              </div>
+            </div>
+
+            {/* ── Audiolibro ── */}
+            <div style={{ background: "var(--green-soft)", border: "2px solid var(--ink)", borderRadius: "var(--radius-card)", overflow: "hidden", display: "flex", flexDirection: "column", boxShadow: "4px 4px 0 var(--ink)" }}>
+              <div style={{ position: "relative", height: 220, background: "var(--green-soft)", flexShrink: 0 }}>
+                <Image src="/images/book/book-audio.png" alt="Audiolibro — próximamente" fill style={{ objectFit: "cover", objectPosition: "center" }} />
+              </div>
+              <div style={{ padding: "24px 24px 28px", display: "flex", flexDirection: "column", gap: 14, flexGrow: 1 }}>
+                <div>
+                  <p style={{ fontFamily: "var(--font-display), 'Archivo Black', sans-serif", fontSize: 22, color: "var(--ink)", margin: "0 0 4px", fontWeight: 700 }}>Audiolibro</p>
+                  <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", fontSize: 13, color: "var(--muted-ink)", margin: 0 }}>Para escuchar donde estés</p>
+                </div>
+                <p style={{ fontFamily: "var(--font-display), 'Archivo Black', sans-serif", fontSize: 24, color: "var(--ink)", margin: 0, fontWeight: 700, lineHeight: 1 }}>
+                  Próximamente
+                </p>
+                <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", fontSize: 14, color: "var(--body)", margin: 0, lineHeight: 1.6 }}>
+                  El audiolibro está en producción. Dejá tu contacto y te avisamos cuando esté disponible.
+                </p>
+                <a href={WA_AUDIO} target="_blank" rel="noopener noreferrer" className="btn-dark" style={{ textAlign: "center", marginTop: "auto" }}>
+                  AVISAME CUANDO ESTÉ
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -238,7 +282,7 @@ export default function LeerPage() {
             <SectionLabel text="Hijos Golondrina" color="green" />
             <h2 style={{ fontFamily: "var(--font-display), 'Archivo Black', sans-serif", fontWeight: 400, fontSize: "clamp(28px, 4vw, 46px)", letterSpacing: "-0.24px", color: "var(--ink)", margin: 0, lineHeight: 1.1 }}>
               Una comunidad para quienes{" "}
-              <span style={{ fontFamily: "var(--font-script), 'Dancing Script', cursive", fontStyle: "italic", color: "var(--orange-dark)" }}>aman a la distancia</span>
+              <span style={{ fontFamily: "var(--font-script), 'Caveat', cursive", fontStyle: "italic", color: "var(--orange-dark)" }}>aman a la distancia</span>
             </h2>
             <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", fontSize: 17, lineHeight: 1.75, color: "var(--body)", margin: 0 }}>
               Hijos Golondrina es un espacio gratuito para madres, padres y familias atravesadas por la migración, la distancia o la sensación de extrañar a alguien que vive lejos.
@@ -260,7 +304,7 @@ export default function LeerPage() {
           <div style={{ background: "white", border: "2px solid var(--ink)", borderRadius: "var(--radius-card)", padding: "36px", display: "flex", flexDirection: "column", gap: 16, boxShadow: "6px 6px 0 var(--ink)" }}>
             {hijosSent ? (
               <div style={{ textAlign: "center", padding: "24px 0", display: "flex", flexDirection: "column", gap: 16 }}>
-                <p style={{ fontFamily: "var(--font-script), 'Dancing Script', cursive", fontStyle: "italic", fontSize: 36, color: "var(--green-dark)", margin: 0 }}>¡Bienvenida!</p>
+                <p style={{ fontFamily: "var(--font-script), 'Caveat', cursive", fontStyle: "italic", fontSize: 36, color: "var(--green-dark)", margin: 0 }}>¡Bienvenida!</p>
                 <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", color: "var(--body)", fontSize: 16, margin: 0, lineHeight: 1.6 }}>
                   Te contactamos pronto con toda la información sobre Hijos Golondrina.
                 </p>
@@ -307,7 +351,7 @@ export default function LeerPage() {
         <div style={{ maxWidth: 640, margin: "0 auto", display: "flex", flexDirection: "column", gap: 20, alignItems: "center" }}>
           <h2 style={{ fontFamily: "var(--font-display), 'Archivo Black', sans-serif", fontWeight: 400, fontSize: "clamp(24px, 3.5vw, 38px)", letterSpacing: "-0.24px", color: "var(--ink)", margin: 0, lineHeight: 1.2 }}>
             ¿Querés escribir{" "}
-            <span style={{ fontFamily: "var(--font-script), 'Dancing Script', cursive", fontStyle: "italic", color: "var(--orange-dark)" }}>algo propio también?</span>
+            <span style={{ fontFamily: "var(--font-script), 'Caveat', cursive", fontStyle: "italic", color: "var(--orange-dark)" }}>algo propio también?</span>
           </h2>
           <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", fontSize: 17, color: "var(--body)", margin: 0, lineHeight: 1.7 }}>
             Conocé los talleres y acompañamientos para empezar tu propia historia.

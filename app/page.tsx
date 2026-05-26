@@ -15,9 +15,10 @@ export default function HomePage() {
       ─────────────────────────────────────────────────────── */}
       <section
         style={{
-          background: "var(--cream)",
           borderBottom: "2px solid var(--ink)",
           padding: "72px 24px 80px",
+          position: "relative",
+          overflow: "hidden",
         }}
       >
         <div
@@ -111,36 +112,31 @@ export default function HomePage() {
       <section
         style={{
           background: "var(--yellow)",
+          borderTop: "2px solid var(--ink)",
           borderBottom: "2px solid var(--ink)",
           padding: "56px 24px",
           textAlign: "center",
         }}
       >
-        <div style={{ maxWidth: 800, margin: "0 auto" }}>
+        <div style={{ maxWidth: 896, margin: "0 auto" }}>
           <p
             style={{
               fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-              fontWeight: 900,
+              fontWeight: 700,
               fontSize: "clamp(22px, 3.5vw, 36px)",
-              lineHeight: 1.3,
+              lineHeight: 1.25,
               color: "var(--ink)",
-              margin: "0 0 16px",
-            }}
-          >
-            Podés llegar por un libro o por las ganas de escribir. El punto de
-            partida cambia, pero la búsqueda suele ser la misma:
-          </p>
-          <p
-            style={{
-              fontFamily: "var(--font-script), 'Dancing Script', cursive",
-              fontStyle: "italic",
-              fontSize: "clamp(32px, 5vw, 52px)",
-              color: "var(--orange-dark)",
               margin: 0,
-              lineHeight: 1.2,
             }}
           >
-            encontrar palabras propias.
+            Podés llegar por un libro o por las ganas de escribir.<br />
+            El punto de partida cambia, pero la búsqueda suele ser la misma:<br />
+            <span
+              className="script normal-case"
+              style={{ fontSize: "1.15em", color: "var(--orange-dark)" }}
+            >
+              encontrar palabras propias.
+            </span>
           </p>
         </div>
       </section>
@@ -234,7 +230,7 @@ export default function HomePage() {
               ¿Qué querés hacer{" "}
               <span
                 style={{
-                  fontFamily: "var(--font-script), 'Dancing Script', cursive",
+                  fontFamily: "var(--font-script), 'Caveat', cursive",
                   fontStyle: "italic",
                   color: "var(--orange-dark)",
                 }}
@@ -386,11 +382,18 @@ export default function HomePage() {
       ─────────────────────────────────────────────────────── */}
       <section
         style={{
-          background: "var(--offwhite)",
+          background: "var(--ink)",
           borderBottom: "2px solid var(--ink)",
           padding: "80px 24px",
+          position: "relative",
+          overflow: "visible",
         }}
       >
+        {/* ¡Hola! sticker — Fix 3 */}
+        <div style={{ position: "absolute", top: 40, right: 48, zIndex: 10 }}>
+          <StickerBlob text="¡Hola!" color="yellow" rotate={12} size={100} />
+        </div>
+
         <div
           style={{ maxWidth: 1100, margin: "0 auto" }}
           className="about-grid"
@@ -404,7 +407,7 @@ export default function HomePage() {
                 maxWidth: 400,
                 aspectRatio: "3/4",
                 borderRadius: "var(--radius)",
-                border: "2px solid var(--ink)",
+                border: "2px solid var(--cream)",
                 overflow: "hidden",
               }}
             >
@@ -421,25 +424,13 @@ export default function HomePage() {
           <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
             <SectionLabel text="Sobre Silvina" color="yellow" />
 
-            <p
-              style={{
-                fontFamily: "var(--font-script), 'Dancing Script', cursive",
-                fontStyle: "italic",
-                fontSize: 28,
-                color: "var(--ink)",
-                margin: 0,
-              }}
-            >
-              ¡Hola!
-            </p>
-
             <h2
               style={{
                 fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
                 fontWeight: 400,
                 fontSize: "clamp(28px, 4vw, 46px)",
                 letterSpacing: "-0.24px",
-                color: "var(--ink)",
+                color: "var(--cream)",
                 margin: 0,
                 lineHeight: 1.1,
               }}
@@ -447,9 +438,9 @@ export default function HomePage() {
               Escribir es{" "}
               <span
                 style={{
-                  fontFamily: "var(--font-script), 'Dancing Script', cursive",
+                  fontFamily: "var(--font-script), 'Caveat', cursive",
                   fontStyle: "italic",
-                  color: "var(--yellow-dark)",
+                  color: "var(--yellow)",
                 }}
               >
                 encontrarte.
@@ -461,7 +452,7 @@ export default function HomePage() {
                 fontFamily: "var(--font-body), Inter, sans-serif",
                 fontSize: 17,
                 lineHeight: 1.7,
-                color: "var(--body)",
+                color: "rgba(253, 246, 227, 0.85)",
                 margin: 0,
               }}
             >
@@ -473,7 +464,7 @@ export default function HomePage() {
                 fontFamily: "var(--font-body), Inter, sans-serif",
                 fontSize: 17,
                 lineHeight: 1.7,
-                color: "var(--body)",
+                color: "rgba(253, 246, 227, 0.85)",
                 margin: 0,
               }}
             >
@@ -481,7 +472,7 @@ export default function HomePage() {
             </p>
 
             <div>
-              <Link href="/sobre" className="btn-primary">
+              <Link href="/sobre" className="btn-cream">
                 CONOCÉ MI HISTORIA
               </Link>
             </div>
@@ -516,7 +507,7 @@ export default function HomePage() {
               Lo que cuentan quienes ya{" "}
               <span
                 style={{
-                  fontFamily: "var(--font-script), 'Dancing Script', cursive",
+                  fontFamily: "var(--font-script), 'Caveat', cursive",
                   fontStyle: "italic",
                   color: "var(--orange-dark)",
                 }}
@@ -607,7 +598,7 @@ export default function HomePage() {
               ¿Por dónde querés{" "}
               <span
                 style={{
-                  fontFamily: "var(--font-script), 'Dancing Script', cursive",
+                  fontFamily: "var(--font-script), 'Caveat', cursive",
                   fontStyle: "italic",
                   color: "var(--yellow)",
                 }}

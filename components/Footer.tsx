@@ -68,7 +68,7 @@ export default function Footer() {
 
           <p
             style={{
-              fontFamily: "var(--font-script), 'Dancing Script', cursive",
+              fontFamily: "var(--font-script), 'Caveat', cursive",
               fontSize: 28,
               fontStyle: "italic",
               color: "var(--yellow)",
@@ -101,6 +101,46 @@ export default function Footer() {
               { href: "/leer",                label: "Quiero leer" },
               { href: "/aprender-a-escribir", label: "Quiero aprender a escribir" },
               { href: "/sobre",               label: "Conocé a Silvina" },
+            ].map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                style={{
+                  fontFamily: "var(--font-body), Inter, sans-serif",
+                  fontSize: 14,
+                  color: "rgba(253,246,227,0.75)",
+                  textDecoration: "none",
+                  transition: "color 0.15s",
+                }}
+              >
+                {label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+
+        {/* Col 3b — Info útil */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <h3
+            style={{
+              fontFamily: "var(--font-body), 'Inter', sans-serif",
+              fontWeight: 600,
+              fontSize: 13,
+              textTransform: "uppercase",
+              letterSpacing: "1px",
+              margin: 0,
+              color: "var(--cream)",
+            }}
+          >
+            Info útil
+          </h3>
+          <nav style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            {[
+              { href: "/comprar",    label: "Comprar el libro" },
+              { href: "/envios",     label: "Envíos y devoluciones" },
+              { href: "/contacto",   label: "Contacto" },
+              { href: "/privacidad", label: "Privacidad" },
+              { href: "/terminos",   label: "Términos y condiciones" },
             ].map(({ href, label }) => (
               <Link
                 key={href}

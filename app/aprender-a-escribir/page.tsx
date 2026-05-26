@@ -142,7 +142,7 @@ export default function AprenderPage() {
               </h1>
 
               <span style={{
-                fontFamily: "var(--font-script), 'Dancing Script', cursive",
+                fontFamily: "var(--font-script), 'Caveat', cursive",
                 fontStyle: "italic",
                 fontWeight: 700,
                 fontSize: "clamp(36px, 4vw, 48px)",
@@ -491,7 +491,7 @@ export default function AprenderPage() {
                 gap: 16,
               }}>
                 <p style={{
-                  fontFamily: "var(--font-script), 'Dancing Script', cursive",
+                  fontFamily: "var(--font-script), 'Caveat', cursive",
                   fontStyle: "italic",
                   fontSize: "clamp(18px, 2.2vw, 22px)",
                   color: "var(--ink)",
@@ -548,7 +548,7 @@ export default function AprenderPage() {
             }}>
               Si no sabés cuál elegir,{" "}
               <span style={{
-                fontFamily: "var(--font-script), 'Dancing Script', cursive",
+                fontFamily: "var(--font-script), 'Caveat', cursive",
                 fontStyle: "italic",
                 color: "var(--orange-dark)",
               }}>lo vemos juntas.</span>

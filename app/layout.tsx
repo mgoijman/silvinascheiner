@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo, Inter, Dancing_Script } from "next/font/google";
+import { Archivo, Inter, Caveat } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -19,7 +19,7 @@ const inter = Inter({
   display: "swap",
 });
 
-const dancingScript = Dancing_Script({
+const caveat = Caveat({
   weight: ["400", "700"],
   subsets: ["latin"],
   variable: "--font-script",
@@ -47,7 +47,7 @@ export default function RootLayout({
   return (
     <html
       lang="es-AR"
-      className={`${archivoBlack.variable} ${inter.variable} ${dancingScript.variable}`}
+      className={`${archivoBlack.variable} ${inter.variable} ${caveat.variable}`}
     >
       <body style={{ background: "var(--cream)", color: "var(--body)" }}>
         <Navbar />

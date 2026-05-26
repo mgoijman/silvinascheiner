@@ -31,7 +31,7 @@
 
   /* ── Type ────────────────────────────────────────────── */
   /* --font-display, --font-body, --font-script set by next/font */
-  --font-accent:  var(--font-script); /* Dancing Script — alias used by design system tokens */
+  --font-accent:  var(--font-script); /* Caveat — alias used by design system tokens */
 
   /* ── Borders ─────────────────────────────────────────── */
   --border-w:     2px;
@@ -144,8 +144,10 @@
   }
 
   .script {
-    font-family: var(--font-script), 'Dancing Script', cursive;
+    font-family: var(--font-script), 'Caveat', cursive;
     font-style: italic;
+    font-weight: 700;
+    letter-spacing: 0;
   }
 
   .tape {
@@ -215,6 +217,17 @@
   grid-template-columns: 1fr 1fr;
   gap: 32px;
 }
+.formats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.legal-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 64px;
+  align-items: start;
+}
 
 @media (max-width: 768px) {
   .two-col,
@@ -223,7 +236,9 @@
   .paths-grid,
   .options-grid,
   .testimonials-grid,
-  .choice-grid {
+  .choice-grid,
+  .formats-grid,
+  .legal-grid {
     grid-template-columns: 1fr !important;
   }
 }

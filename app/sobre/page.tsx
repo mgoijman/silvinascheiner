@@ -70,7 +70,7 @@ export default function SobrePage() {
               Soy una amante de las{" "}
               <span
                 style={{
-                  fontFamily: "var(--font-script), 'Dancing Script', cursive",
+                  fontFamily: "var(--font-script), 'Caveat', cursive",
                   fontStyle: "italic",
                   color: "var(--orange-dark)",
                 }}
@@ -164,7 +164,7 @@ export default function SobrePage() {
               De las noticias a{" "}
               <span
                 style={{
-                  fontFamily: "var(--font-script), 'Dancing Script', cursive",
+                  fontFamily: "var(--font-script), 'Caveat', cursive",
                   fontStyle: "italic",
                   color: "var(--orange-dark)",
                 }}
@@ -224,7 +224,7 @@ export default function SobrePage() {
             >
               <p
                 style={{
-                  fontFamily: "var(--font-script), 'Dancing Script', cursive",
+                  fontFamily: "var(--font-script), 'Caveat', cursive",
                   fontStyle: "italic",
                   fontSize: 28,
                   color: "var(--ink)",
@@ -265,7 +265,7 @@ export default function SobrePage() {
               Un camino de{" "}
               <span
                 style={{
-                  fontFamily: "var(--font-script), 'Dancing Script', cursive",
+                  fontFamily: "var(--font-script), 'Caveat', cursive",
                   fontStyle: "italic",
                   color: "var(--green-dark)",
                 }}
@@ -342,7 +342,7 @@ export default function SobrePage() {
             Si te resonó algo de lo que leíste,{" "}
             <span
               style={{
-                fontFamily: "var(--font-script), 'Dancing Script', cursive",
+                fontFamily: "var(--font-script), 'Caveat', cursive",
                 fontStyle: "italic",
                 color: "var(--green-dark)",
               }}
