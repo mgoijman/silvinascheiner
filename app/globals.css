@@ -31,7 +31,7 @@
 
   /* ── Type ────────────────────────────────────────────── */
   /* --font-display, --font-body, --font-script set by next/font */
-  --font-accent:  var(--font-script); /* Quintessential — alias used by design system tokens */
+  --font-accent:  var(--font-script); /* Dancing Script — alias used by design system tokens */
 
   /* ── Borders ─────────────────────────────────────────── */
   --border-w:     2px;
@@ -144,7 +144,7 @@
   }
 
   .script {
-    font-family: var(--font-script), 'Quintessential', cursive;
+    font-family: var(--font-script), 'Dancing Script', cursive;
     font-style: italic;
   }
 

@@ -61,7 +61,7 @@ export default function LeerPage() {
             <SectionLabel text="Quiero leer" color="orange" />
             <h1 style={{ fontFamily: "var(--font-display), 'Archivo Black', sans-serif", fontWeight: 400, fontSize: "clamp(44px, 6vw, 72px)", lineHeight: 1.05, letterSpacing: "-0.3px", color: "var(--ink)", margin: 0 }}>
               Distancias<br />
-              <span style={{ fontFamily: "var(--font-script), 'Quintessential', cursive", fontStyle: "italic", color: "var(--orange-dark)", fontSize: "0.95em" }}>del corazón</span>
+              <span style={{ fontFamily: "var(--font-script), 'Dancing Script', cursive", fontStyle: "italic", color: "var(--orange-dark)", fontSize: "0.95em" }}>del corazón</span>
             </h1>
             <WaveDivider />
             <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", fontSize: 18, lineHeight: 1.7, color: "var(--body)", margin: 0, maxWidth: 500 }}>
@@ -93,7 +93,7 @@ export default function LeerPage() {
         <div style={{ maxWidth: 800, margin: "0 auto", display: "flex", flexDirection: "column", gap: 24 }}>
           <h2 style={{ fontFamily: "var(--font-display), 'Archivo Black', sans-serif", fontWeight: 400, fontSize: "clamp(32px, 5vw, 56px)", letterSpacing: "-0.24px", color: "var(--cream)", margin: 0, lineHeight: 1.1 }}>
             Si extrañar pesa,{" "}
-            <span style={{ fontFamily: "var(--font-script), 'Quintessential', cursive", fontStyle: "italic", color: "var(--yellow)" }}>acá vas a encontrar palabras.</span>
+            <span style={{ fontFamily: "var(--font-script), 'Dancing Script', cursive", fontStyle: "italic", color: "var(--yellow)" }}>acá vas a encontrar palabras.</span>
           </h2>
           <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", fontSize: 17, lineHeight: 1.75, color: "rgba(253,246,227,0.8)", margin: 0, maxWidth: 640 }}>
             <em>Distancias del corazón</em> nació de un viaje, de una hija viviendo lejos y de una charla pendiente. Es para madres, padres, hijas, hijos y lectores que conocen de cerca el amor a la distancia.
@@ -111,7 +111,7 @@ export default function LeerPage() {
             <SectionLabel text="Primer paso" color="orange" />
             <h2 style={{ fontFamily: "var(--font-display), 'Archivo Black', sans-serif", fontWeight: 400, fontSize: "clamp(28px, 4vw, 46px)", letterSpacing: "-0.24px", color: "var(--ink)", margin: 0, lineHeight: 1.1 }}>
               Leé antes de{" "}
-              <span style={{ fontFamily: "var(--font-script), 'Quintessential', cursive", fontStyle: "italic", color: "var(--orange-dark)" }}>decidir.</span>
+              <span style={{ fontFamily: "var(--font-script), 'Dancing Script', cursive", fontStyle: "italic", color: "var(--orange-dark)" }}>decidir.</span>
             </h2>
             <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", fontSize: 17, lineHeight: 1.7, color: "var(--body)", margin: 0 }}>
               Si el tema te toca, empezá por el primer capítulo. Te llega por email para que puedas leerlo con calma, desde donde estés.
@@ -124,7 +124,7 @@ export default function LeerPage() {
           <div style={{ background: "var(--orange)", border: "2px solid var(--ink)", borderRadius: "var(--radius-card)", padding: "36px", display: "flex", flexDirection: "column", gap: 16, boxShadow: "6px 6px 0 var(--ink)" }}>
             {cap1Sent ? (
               <div style={{ textAlign: "center", padding: "24px 0", display: "flex", flexDirection: "column", gap: 16 }}>
-                <p style={{ fontFamily: "var(--font-script), 'Quintessential', cursive", fontStyle: "italic", fontSize: 36, color: "white", margin: 0 }}>¡Ya está en camino!</p>
+                <p style={{ fontFamily: "var(--font-script), 'Dancing Script', cursive", fontStyle: "italic", fontSize: 36, color: "white", margin: 0 }}>¡Ya está en camino!</p>
                 <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", color: "rgba(255,255,255,0.9)", fontSize: 16, margin: 0, lineHeight: 1.6 }}>
                   Revisá tu bandeja — el primer capítulo de <em>Distancias del corazón</em> llega en minutos.
                 </p>
@@ -166,7 +166,7 @@ export default function LeerPage() {
             <SectionLabel text="¿De qué se trata?" color="yellow" />
             <h2 style={{ fontFamily: "var(--font-display), 'Archivo Black', sans-serif", fontWeight: 400, fontSize: "clamp(28px, 4vw, 44px)", letterSpacing: "-0.24px", color: "var(--ink)", margin: 0, lineHeight: 1.1 }}>
               Un viaje al{" "}
-              <span style={{ fontFamily: "var(--font-script), 'Quintessential', cursive", fontStyle: "italic", color: "var(--orange-dark)" }}>otro lado del mundo.</span>
+              <span style={{ fontFamily: "var(--font-script), 'Dancing Script', cursive", fontStyle: "italic", color: "var(--orange-dark)" }}>otro lado del mundo.</span>
             </h2>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 8 }}>
               {["Vínculos a distancia", "Familia", "Migración", "Historias reales"].map(tag => <ThemeTag key={tag} text={tag} />)}
@@ -191,7 +191,7 @@ export default function LeerPage() {
             <SectionLabel text="Comprar el libro" color="orange" />
             <h2 style={{ fontFamily: "var(--font-display), 'Archivo Black', sans-serif", fontWeight: 400, fontSize: "clamp(26px, 3.5vw, 40px)", letterSpacing: "-0.24px", color: "var(--ink)", margin: "16px 0 8px", lineHeight: 1.1 }}>
               Elegí el formato que{" "}
-              <span style={{ fontFamily: "var(--font-script), 'Quintessential', cursive", fontStyle: "italic", color: "var(--orange-dark)" }}>más te guste.</span>
+              <span style={{ fontFamily: "var(--font-script), 'Dancing Script', cursive", fontStyle: "italic", color: "var(--orange-dark)" }}>más te guste.</span>
             </h2>
             <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", fontSize: 16, color: "var(--body)", margin: 0 }}>
               Podés comprar <em>Distancias del corazón</em> en formato digital, físico o audiolibro. Si no sabés cuál elegir, escribime y te oriento.
@@ -238,7 +238,7 @@ export default function LeerPage() {
             <SectionLabel text="Hijos Golondrina" color="green" />
             <h2 style={{ fontFamily: "var(--font-display), 'Archivo Black', sans-serif", fontWeight: 400, fontSize: "clamp(28px, 4vw, 46px)", letterSpacing: "-0.24px", color: "var(--ink)", margin: 0, lineHeight: 1.1 }}>
               Una comunidad para quienes{" "}
-              <span style={{ fontFamily: "var(--font-script), 'Quintessential', cursive", fontStyle: "italic", color: "var(--orange-dark)" }}>aman a la distancia</span>
+              <span style={{ fontFamily: "var(--font-script), 'Dancing Script', cursive", fontStyle: "italic", color: "var(--orange-dark)" }}>aman a la distancia</span>
             </h2>
             <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", fontSize: 17, lineHeight: 1.75, color: "var(--body)", margin: 0 }}>
               Hijos Golondrina es un espacio gratuito para madres, padres y familias atravesadas por la migración, la distancia o la sensación de extrañar a alguien que vive lejos.
@@ -260,7 +260,7 @@ export default function LeerPage() {
           <div style={{ background: "white", border: "2px solid var(--ink)", borderRadius: "var(--radius-card)", padding: "36px", display: "flex", flexDirection: "column", gap: 16, boxShadow: "6px 6px 0 var(--ink)" }}>
             {hijosSent ? (
               <div style={{ textAlign: "center", padding: "24px 0", display: "flex", flexDirection: "column", gap: 16 }}>
-                <p style={{ fontFamily: "var(--font-script), 'Quintessential', cursive", fontStyle: "italic", fontSize: 36, color: "var(--green-dark)", margin: 0 }}>¡Bienvenida!</p>
+                <p style={{ fontFamily: "var(--font-script), 'Dancing Script', cursive", fontStyle: "italic", fontSize: 36, color: "var(--green-dark)", margin: 0 }}>¡Bienvenida!</p>
                 <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", color: "var(--body)", fontSize: 16, margin: 0, lineHeight: 1.6 }}>
                   Te contactamos pronto con toda la información sobre Hijos Golondrina.
                 </p>
@@ -307,7 +307,7 @@ export default function LeerPage() {
         <div style={{ maxWidth: 640, margin: "0 auto", display: "flex", flexDirection: "column", gap: 20, alignItems: "center" }}>
           <h2 style={{ fontFamily: "var(--font-display), 'Archivo Black', sans-serif", fontWeight: 400, fontSize: "clamp(24px, 3.5vw, 38px)", letterSpacing: "-0.24px", color: "var(--ink)", margin: 0, lineHeight: 1.2 }}>
             ¿Querés escribir{" "}
-            <span style={{ fontFamily: "var(--font-script), 'Quintessential', cursive", fontStyle: "italic", color: "var(--orange-dark)" }}>algo propio también?</span>
+            <span style={{ fontFamily: "var(--font-script), 'Dancing Script', cursive", fontStyle: "italic", color: "var(--orange-dark)" }}>algo propio también?</span>
           </h2>
           <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", fontSize: 17, color: "var(--body)", margin: 0, lineHeight: 1.7 }}>
             Conocé los talleres y acompañamientos para empezar tu propia historia.
