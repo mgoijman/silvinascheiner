@@ -119,37 +119,40 @@ export default function AprenderPage() {
           <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
             <SectionLabel text="Quiero aprender a escribir" color="yellow" />
 
-            <h1 style={{
-              fontFamily: "var(--font-body), 'Inter', sans-serif",
-              fontWeight: 700,
-              fontSize: "clamp(40px, 6.5vw, 82px)",
-              lineHeight: 1.0,
-              color: "var(--ink)",
-              margin: 0,
-            }}>
-              ¿Tenés algo que querés escribir y no sabés{" "}
-              <span style={{
-                background: "var(--orange)",
-                color: "var(--cream)",
-                padding: "0 6px",
-                display: "inline",
-                borderRadius: 0,
-                WebkitBoxDecorationBreak: "clone",
-                boxDecorationBreak: "clone",
-              }}>por dónde empezar?</span>
-            </h1>
+            {/* H1 + subheading flush together — no gap between them */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+              <h1 style={{
+                fontFamily: "var(--font-body), 'Inter', sans-serif",
+                fontWeight: 700,
+                fontSize: "clamp(36px, 4vw, 48px)",
+                lineHeight: 1.05,
+                color: "var(--ink)",
+                margin: 0,
+              }}>
+                ¿Tenés algo que querés escribir y no sabés{" "}
+                <span style={{
+                  background: "var(--orange)",
+                  color: "var(--cream)",
+                  padding: "0 6px",
+                  display: "inline",
+                  borderRadius: 0,
+                  WebkitBoxDecorationBreak: "clone",
+                  boxDecorationBreak: "clone",
+                }}>por dónde empezar?</span>
+              </h1>
 
-            <span style={{
-              fontFamily: "var(--font-script), 'Caveat', cursive",
-              fontStyle: "italic",
-              fontWeight: 700,
-              fontSize: "clamp(36px, 5.5vw, 72px)",
-              color: "var(--orange-dark)",
-              lineHeight: 1.2,
-              display: "block",
-            }}>
-              Lo entiendo mejor de lo que pensás.
-            </span>
+              <span style={{
+                fontFamily: "var(--font-script), 'Caveat', cursive",
+                fontStyle: "italic",
+                fontWeight: 700,
+                fontSize: "clamp(36px, 4vw, 48px)",
+                color: "var(--orange-dark)",
+                lineHeight: 1.1,
+                display: "block",
+              }}>
+                Lo entiendo mejor de lo que pensás.
+              </span>
+            </div>
 
             <WaveDivider />
 
