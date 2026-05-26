@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo, Inter, Caveat } from "next/font/google";
+import { Archivo, Inter, Quintessential } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -19,8 +19,8 @@ const inter = Inter({
   display: "swap",
 });
 
-const caveat = Caveat({
-  weight: ["400", "700"],
+const quintessential = Quintessential({
+  weight: ["400"],
   subsets: ["latin"],
   variable: "--font-script",
   display: "swap",
@@ -47,7 +47,7 @@ export default function RootLayout({
   return (
     <html
       lang="es-AR"
-      className={`${archivoBlack.variable} ${inter.variable} ${caveat.variable}`}
+      className={`${archivoBlack.variable} ${inter.variable} ${quintessential.variable}`}
     >
       <body style={{ background: "var(--cream)", color: "var(--body)" }}>
         <Navbar />

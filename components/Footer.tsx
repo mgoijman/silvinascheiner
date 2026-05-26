@@ -68,7 +68,7 @@ export default function Footer() {
 
           <p
             style={{
-              fontFamily: "var(--font-script), 'Caveat', cursive",
+              fontFamily: "var(--font-script), 'Quintessential', cursive",
               fontSize: 28,
               fontStyle: "italic",
               color: "var(--yellow)",

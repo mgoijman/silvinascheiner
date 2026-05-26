@@ -132,7 +132,7 @@ export default function HomePage() {
           </p>
           <p
             style={{
-              fontFamily: "var(--font-script), 'Caveat', cursive",
+              fontFamily: "var(--font-script), 'Quintessential', cursive",
               fontStyle: "italic",
               fontSize: "clamp(32px, 5vw, 52px)",
               color: "var(--orange-dark)",
@@ -234,7 +234,7 @@ export default function HomePage() {
               ¿Qué querés hacer{" "}
               <span
                 style={{
-                  fontFamily: "var(--font-script), 'Caveat', cursive",
+                  fontFamily: "var(--font-script), 'Quintessential', cursive",
                   fontStyle: "italic",
                   color: "var(--orange-dark)",
                 }}
@@ -423,7 +423,7 @@ export default function HomePage() {
 
             <p
               style={{
-                fontFamily: "var(--font-script), 'Caveat', cursive",
+                fontFamily: "var(--font-script), 'Quintessential', cursive",
                 fontStyle: "italic",
                 fontSize: 28,
                 color: "var(--ink)",
@@ -447,7 +447,7 @@ export default function HomePage() {
               Escribir es{" "}
               <span
                 style={{
-                  fontFamily: "var(--font-script), 'Caveat', cursive",
+                  fontFamily: "var(--font-script), 'Quintessential', cursive",
                   fontStyle: "italic",
                   color: "var(--yellow-dark)",
                 }}
@@ -516,7 +516,7 @@ export default function HomePage() {
               Lo que cuentan quienes ya{" "}
               <span
                 style={{
-                  fontFamily: "var(--font-script), 'Caveat', cursive",
+                  fontFamily: "var(--font-script), 'Quintessential', cursive",
                   fontStyle: "italic",
                   color: "var(--orange-dark)",
                 }}
@@ -607,7 +607,7 @@ export default function HomePage() {
               ¿Por dónde querés{" "}
               <span
                 style={{
-                  fontFamily: "var(--font-script), 'Caveat', cursive",
+                  fontFamily: "var(--font-script), 'Quintessential', cursive",
                   fontStyle: "italic",
                   color: "var(--yellow)",
                 }}
