@@ -122,7 +122,7 @@ export default function EnviosPage() {
             <span style={{ fontSize: 20, flexShrink: 0 }}>💡</span>
             <p style={{ fontFamily: body, fontSize: 14, color: "var(--ink)", margin: 0, lineHeight: 1.6 }}>
               <strong>¿No llegó el email?</strong> Revisá la carpeta de correo no deseado o spam. Si no está ahí, escribíme por{" "}
-              <a href="https://wa.me/5491100000000" target="_blank" rel="noopener noreferrer" style={{ color: "var(--ink)", fontWeight: 700 }}>WhatsApp</a> o a{" "}
+              <a href="https://wa.me/5491159264582" target="_blank" rel="noopener noreferrer" style={{ color: "var(--ink)", fontWeight: 700 }}>WhatsApp</a> o a{" "}
               <a href="mailto:hola@soysilvinascheiner.com.ar" style={{ color: "var(--ink)", fontWeight: 700 }}>hola@soysilvinascheiner.com.ar</a> y te lo reenvío en el momento.
             </p>
           </div>
@@ -185,7 +185,7 @@ export default function EnviosPage() {
           >
             <span style={{ fontSize: 20, flexShrink: 0 }}>📦</span>
             <p style={{ fontFamily: body, fontSize: 14, color: "var(--ink)", margin: 0, lineHeight: 1.6 }}>
-              Para comprar el libro físico, <a href="https://wa.me/5491100000000?text=Hola%20Silvina%2C%20me%20interesa%20el%20libro%20f%C3%ADsico" target="_blank" rel="noopener noreferrer" style={{ color: "var(--ink)", fontWeight: 700 }}>escribíme por WhatsApp</a>. Coordinamos el precio total con envío y te mandamos el link de pago.
+              Para comprar el libro físico, <a href="https://wa.me/5491159264582?text=Hola%20Silvina%2C%20me%20interesa%20el%20libro%20f%C3%ADsico" target="_blank" rel="noopener noreferrer" style={{ color: "var(--ink)", fontWeight: 700 }}>escribíme por WhatsApp</a>. Coordinamos el precio total con envío y te mandamos el link de pago.
             </p>
           </div>
         </div>
@@ -267,7 +267,7 @@ export default function EnviosPage() {
 
           <div style={{ marginTop: 40, display: "flex", gap: 12, flexWrap: "wrap" }}>
             <Link href="/contacto" className="btn-primary">IR A CONTACTO</Link>
-            <a href="https://wa.me/5491100000000" target="_blank" rel="noopener noreferrer" className="btn-secondary">
+            <a href="https://wa.me/5491159264582" target="_blank" rel="noopener noreferrer" className="btn-secondary">
               WHATSAPP
             </a>
           </div>

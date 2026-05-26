@@ -51,7 +51,7 @@ export default function TerminosPage() {
 
           <Section title="1. Aceptación de los términos">
             <P>
-              Al acceder y utilizar el sitio web de Silvina Scheiner (en adelante "el Sitio") y al adquirir cualquier producto o servicio ofrecido, aceptás los presentes Términos y Condiciones en su totalidad. Si no estás de acuerdo con alguna parte, te pedimos que no utilices el Sitio.
+              Al acceder y utilizar el sitio web de Silvina Scheiner (en adelante &ldquo;el Sitio&rdquo;) y al adquirir cualquier producto o servicio ofrecido, aceptás los presentes Términos y Condiciones en su totalidad. Si no estás de acuerdo con alguna parte, te pedimos que no utilices el Sitio.
             </P>
           </Section>
 

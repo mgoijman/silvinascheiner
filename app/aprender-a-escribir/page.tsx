@@ -4,98 +4,8 @@ import SectionLabel from "@/components/SectionLabel";
 import StickerBlob from "@/components/StickerBlob";
 import WaveDivider from "@/components/WaveDivider";
 import HeroImageFrame from "@/components/HeroImageFrame";
-
-/* ─── Badge chip (inline service category label) ─── */
-function Badge({ text, color = "muted" }: { text: string; color?: "muted" | "green" | "orange" }) {
-  const styles: Record<string, React.CSSProperties> = {
-    muted:  { background: "var(--offwhite)", color: "var(--muted-ink)", border: "1px solid var(--line)" },
-    green:  { background: "var(--green-soft)", color: "var(--green-dark)", border: "1px solid var(--green)" },
-    orange: { background: "var(--orange-soft)", color: "var(--orange-dark)", border: "1px solid var(--orange)" },
-  };
-  return (
-    <span style={{
-      ...styles[color],
-      display: "inline-block",
-      borderRadius: "var(--radius-pill)",
-      padding: "3px 10px",
-      fontFamily: "var(--font-body), 'Inter', sans-serif",
-      fontSize: 11,
-      fontWeight: 600,
-      letterSpacing: "0.4px",
-      textTransform: "lowercase",
-    }}>
-      {text}
-    </span>
-  );
-}
-
-/* ─── Service card ─── */
-function ServiceCard({
-  badge,
-  badgeColor = "muted",
-  title,
-  description,
-  cta = "QUIERO INFO →",
-  href = "https://wa.me/5491100000000",
-  ctaVariant = "link",
-}: {
-  badge: string;
-  badgeColor?: "muted" | "green" | "orange";
-  title: string;
-  description: string;
-  cta?: string;
-  href?: string;
-  ctaVariant?: "link" | "btn";
-}) {
-  return (
-    <article style={{
-      display: "flex",
-      flexDirection: "column",
-      gap: 16,
-      borderRadius: "var(--radius-card)",
-      border: "2px solid var(--ink)",
-      background: "white",
-      padding: "28px",
-      boxShadow: "6px 6px 0 var(--ink)",
-      height: "100%",
-    }}>
-      <Badge text={badge} color={badgeColor} />
-      <h3 style={{
-        fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-        fontWeight: 700,
-        fontSize: 20,
-        color: "var(--ink)",
-        margin: 0,
-        lineHeight: 1.25,
-      }}>{title}</h3>
-      <p style={{
-        fontFamily: "var(--font-body), Inter, sans-serif",
-        fontSize: 15,
-        color: "var(--body)",
-        margin: 0,
-        lineHeight: 1.65,
-        flexGrow: 1,
-      }}>{description}</p>
-      <div style={{ marginTop: 4 }}>
-        {ctaVariant === "btn" ? (
-          <a href={href} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ fontSize: 11 }}>
-            {cta}
-          </a>
-        ) : (
-          <a href={href} target="_blank" rel="noopener noreferrer" style={{
-            fontFamily: "var(--font-body), 'Inter', sans-serif",
-            fontSize: 12,
-            fontWeight: 700,
-            color: "var(--orange-dark)",
-            textDecoration: "none",
-            letterSpacing: "0.4px",
-            textTransform: "uppercase",
-          }}>{cta}</a>
-        )}
-      </div>
-    </article>
-  );
-}
+import TestimonialCard from "@/components/TestimonialCard";
+import OrientationForm from "@/components/OrientationForm";
 
 export default function AprenderPage() {
   return (
@@ -262,24 +172,28 @@ export default function AprenderPage() {
                 Para escribir a tu ritmo, trabajar una historia personal o recibir una guía enfocada en tu propio proceso.
               </p>
 
-              <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 10 }}>
-                {["21 consignas para brillar", "Autobiografía o Mi historia es de novela", "Coaching 1:1 con Silvina"].map(item => (
-                  <li key={item} style={{
-                    fontFamily: "var(--font-body), Inter, sans-serif",
-                    fontSize: 15,
-                    color: "white",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 10,
-                  }}>
-                    <span style={{ opacity: 0.7 }}>→</span> {item}
+              <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 12 }}>
+                {[
+                  { label: "21 consignas para brillar", href: "/aprender-a-escribir/21-consignas" },
+                  { label: "Mi historia es de novela", href: "/aprender-a-escribir/mi-historia-es-de-novela" },
+                  { label: "Coaching 1:1 con Silvina", href: "/aprender-a-escribir/coaching-1-a-1" },
+                ].map(({ label, href }) => (
+                  <li key={label}>
+                    <Link href={href} style={{
+                      fontFamily: "var(--font-body), Inter, sans-serif",
+                      fontSize: 15,
+                      color: "white",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 10,
+                      textDecoration: "none",
+                      fontWeight: 600,
+                    }}>
+                      <span style={{ opacity: 0.7, flexShrink: 0 }}>→</span>{label}
+                    </Link>
                   </li>
                 ))}
               </ul>
-
-              <div style={{ marginTop: "auto" }}>
-                <a href="#sola" className="btn-dark" style={{ fontSize: 11 }}>VER OPCIONES</a>
-              </div>
             </article>
 
             {/* Card 2 — Acompañada */}
@@ -336,116 +250,9 @@ export default function AprenderPage() {
               </ul>
 
               <div style={{ marginTop: "auto" }}>
-                <a href="#acompanada" className="btn-dark" style={{ fontSize: 11 }}>VER OPCIONES</a>
+                <a href="https://wa.me/5491159264582?text=Hola%20Silvina%2C%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20grupos%20de%20escritura" target="_blank" rel="noopener noreferrer" className="btn-dark" style={{ fontSize: 11 }}>VER OPCIONES</a>
               </div>
             </article>
-          </div>
-        </div>
-      </section>
-
-      {/* ── ESCRIBIR SOLA ──────────────────────────────────── */}
-      <section id="sola" style={{
-        background: "var(--cream)",
-        borderBottom: "2px solid var(--ink)",
-        padding: "80px 24px",
-      }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <div style={{ marginBottom: 48 }}>
-            <SectionLabel text="Escribir sola" color="orange" />
-            <h2 style={{
-              fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-              fontWeight: 400,
-              fontSize: "clamp(28px, 4vw, 44px)",
-              letterSpacing: "-0.24px",
-              color: "var(--ink)",
-              margin: "16px 0 8px",
-              lineHeight: 1.1,
-            }}>A tu ritmo, con tu voz.</h2>
-          </div>
-
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 24,
-          }} className="paths-grid">
-            <ServiceCard
-              badge="baja fricción"
-              title="21 consignas para brillar"
-              description="Una experiencia para escribir a tu manera, con libertad y sin horarios. Ideal si querés empezar sin sumarte a un grupo."
-              cta="QUIERO INFO →"
-            />
-            <ServiceCard
-              badge="historia personal"
-              title="Autobiografía o Mi historia es de novela"
-              description="Un taller para ordenar momentos de tu vida, evocar anécdotas y descubrir qué historia aparece cuando empezás a contarla."
-              cta="QUIERO INFO →"
-            />
-            <ServiceCard
-              badge="acompañamiento individual"
-              title="Coaching 1:1 con Silvina"
-              description="Para trabajar un libro, una idea o un texto que necesita estructura, tono, revisión o un plan posible con acompañamiento individual."
-              cta="QUIERO INFO →"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* ── ESCRIBIR ACOMPAÑADA ────────────────────────────── */}
-      <section id="acompanada" style={{
-        background: "var(--green-soft)",
-        borderBottom: "2px solid var(--ink)",
-        padding: "80px 24px",
-      }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <div style={{ marginBottom: 48 }}>
-            <SectionLabel text="Escribir acompañada" color="green" />
-            <h2 style={{
-              fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-              fontWeight: 400,
-              fontSize: "clamp(28px, 4vw, 44px)",
-              letterSpacing: "-0.24px",
-              color: "var(--ink)",
-              margin: "16px 0 8px",
-              lineHeight: 1.1,
-            }}>Escribir y leer con otros.</h2>
-            <p style={{
-              fontFamily: "var(--font-body), Inter, sans-serif",
-              fontSize: 17,
-              color: "var(--body)",
-              margin: 0,
-              maxWidth: 560,
-            }}>
-              Si te hace bien la práctica compartida, podés empezar gratis desde Instagram o sumarte a un grupo creativo o de lectura.
-            </p>
-          </div>
-
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 24,
-          }} className="paths-grid">
-            <ServiceCard
-              badge="gratis"
-              badgeColor="green"
-              title="Comunidad de Escritura Creativa"
-              description="Una comunidad gratuita en Instagram para recibir consignas, ideas, lecturas y novedades. Ideal si querés acercarte sin anotarte todavía a un taller."
-              cta="SUMARME GRATIS →"
-              href="https://instagram.com/soysilvinascheiner"
-            />
-            <ServiceCard
-              badge="presencial y online"
-              badgeColor="green"
-              title="Grupo de Creatividad"
-              description="Un espacio para escribir con otros, jugar con ideas, activar la imaginación y sostener una práctica creativa."
-              cta="QUIERO INFO →"
-            />
-            <ServiceCard
-              badge="presencial y online"
-              badgeColor="green"
-              title="Grupo de Lectura"
-              description="Un espacio para leer en compañía, conversar sobre libros y descubrir nuevas formas de mirar las historias."
-              cta="QUIERO INFO →"
-            />
           </div>
         </div>
       </section>
@@ -475,46 +282,34 @@ export default function AprenderPage() {
             gridTemplateColumns: "1fr 1fr",
             gap: 20,
           }} className="testimonials-grid">
-            {[
-              { quote: "Llegué con miedo a no tener nada para decir y salí con un cuaderno lleno de escenas que no sabía que estaban en mí.", name: "Florencia M.", program: "Taller de autobiografía" },
-              { quote: "Las consignas de Silvina me sacaron del bloqueo. Empecé a escribir de nuevo, sin presión.", name: "Daniela S.", program: "21 consignas" },
-              { quote: "El grupo de creatividad se volvió un espacio sagrado de mi semana. Escribir con otros me cambió la forma de leer mi vida.", name: "Inés V.", program: "Grupo de creatividad" },
-              { quote: "El 1:1 me ayudó a darle forma a un proyecto que tenía guardado hace años. Hoy es un libro en marcha.", name: "Paula G.", program: "Coaching 1:1" },
-            ].map(({ quote, name, program }) => (
-              <div key={name} style={{
-                background: "var(--offwhite)",
-                border: "2px solid var(--ink)",
-                borderRadius: "var(--radius-card)",
-                padding: "28px 32px",
-                display: "flex",
-                flexDirection: "column",
-                gap: 16,
-              }}>
-                <p style={{
-                  fontFamily: "var(--font-script), 'Caveat', cursive",
-                  fontStyle: "italic",
-                  fontSize: "clamp(18px, 2.2vw, 22px)",
-                  color: "var(--ink)",
-                  margin: 0,
-                  lineHeight: 1.5,
-                }}>"{quote}"</p>
-                <div>
-                  <p style={{
-                    fontFamily: "var(--font-body), Inter, sans-serif",
-                    fontSize: 14,
-                    fontWeight: 700,
-                    color: "var(--ink)",
-                    margin: 0,
-                  }}>{name}</p>
-                  <p style={{
-                    fontFamily: "var(--font-body), Inter, sans-serif",
-                    fontSize: 13,
-                    color: "var(--muted-ink)",
-                    margin: 0,
-                  }}>{program}</p>
-                </div>
-              </div>
-            ))}
+            <TestimonialCard
+              quote="Llegué con miedo a no tener nada para decir y salí con un cuaderno lleno de escenas que no sabía que estaban en mí."
+              name="Florencia M."
+              role="Taller de autobiografía"
+              avatarSrc="/images/testimonials/t1.png"
+              color="yellow"
+            />
+            <TestimonialCard
+              quote="Las consignas de Silvina me sacaron del bloqueo. Empecé a escribir de nuevo, sin presión."
+              name="Daniela S."
+              role="21 consignas"
+              avatarSrc="/images/testimonials/t2.png"
+              color="orange"
+            />
+            <TestimonialCard
+              quote="El grupo de creatividad se volvió un espacio sagrado de mi semana. Escribir con otros me cambió la forma de leer mi vida."
+              name="Inés V."
+              role="Grupo de creatividad"
+              avatarSrc="/images/testimonials/t3.png"
+              color="green-soft"
+            />
+            <TestimonialCard
+              quote="El 1:1 me ayudó a darle forma a un proyecto que tenía guardado hace años. Hoy es un libro en marcha."
+              name="Paula G."
+              role="Coaching 1:1"
+              avatarSrc="/images/testimonials/t4.png"
+              color="orange"
+            />
           </div>
         </div>
       </section>
@@ -565,117 +360,7 @@ export default function AprenderPage() {
           </div>
 
           {/* Right — form */}
-          <div style={{
-            background: "var(--orange)",
-            border: "2px solid var(--ink)",
-            borderRadius: "var(--radius-card)",
-            padding: "36px",
-            display: "flex",
-            flexDirection: "column",
-            gap: 16,
-          }}>
-            <h3 style={{
-              fontFamily: "var(--font-display), 'Archivo Black', sans-serif",
-              fontWeight: 700,
-              fontSize: 22,
-              color: "white",
-              margin: 0,
-            }}>Quiero orientación</h3>
-
-            {(["Nombre", "Email", "WhatsApp"] as const).map(field => (
-              <div key={field}>
-                <label style={{
-                  fontFamily: "var(--font-body), 'Inter', sans-serif",
-                  fontSize: 11,
-                  fontWeight: 600,
-                  letterSpacing: "0.6px",
-                  textTransform: "uppercase",
-                  color: "rgba(255,255,255,0.8)",
-                  display: "block",
-                  marginBottom: 6,
-                }}>{field}{field !== "WhatsApp" ? " *" : " (opcional)"}</label>
-                <input
-                  type={field === "Email" ? "email" : field === "WhatsApp" ? "tel" : "text"}
-                  placeholder={field === "Email" ? "hola@email.com" : field === "WhatsApp" ? "+54 9 11 0000-0000" : `Tu ${field.toLowerCase()}`}
-                  style={{
-                    width: "100%",
-                    padding: "11px 14px",
-                    borderRadius: 10,
-                    border: "2px solid var(--ink)",
-                    background: "rgba(255,255,255,0.15)",
-                    color: "white",
-                    fontFamily: "var(--font-body), Inter, sans-serif",
-                    fontSize: 15,
-                    outline: "none",
-                  }}
-                />
-              </div>
-            ))}
-
-            <div>
-              <label style={{
-                fontFamily: "var(--font-body), 'Inter', sans-serif",
-                fontSize: 11,
-                fontWeight: 600,
-                letterSpacing: "0.6px",
-                textTransform: "uppercase",
-                color: "rgba(255,255,255,0.8)",
-                display: "block",
-                marginBottom: 6,
-              }}>¿Qué estás buscando?</label>
-              <select style={{
-                width: "100%",
-                padding: "11px 14px",
-                borderRadius: 10,
-                border: "2px solid var(--ink)",
-                background: "rgba(255,255,255,0.15)",
-                color: "white",
-                fontFamily: "var(--font-body), Inter, sans-serif",
-                fontSize: 15,
-                outline: "none",
-              }}>
-                <option value="">Elegí una opción</option>
-                <option value="empezar">Quiero empezar a escribir</option>
-                <option value="historia">Quiero escribir mi historia</option>
-                <option value="grupo">Quiero un espacio grupal</option>
-                <option value="proyecto">Tengo un proyecto en mente</option>
-                <option value="no-se">No sé bien qué necesito</option>
-              </select>
-            </div>
-
-            <div>
-              <label style={{
-                fontFamily: "var(--font-body), 'Inter', sans-serif",
-                fontSize: 11,
-                fontWeight: 600,
-                letterSpacing: "0.6px",
-                textTransform: "uppercase",
-                color: "rgba(255,255,255,0.8)",
-                display: "block",
-                marginBottom: 6,
-              }}>Contame más (opcional)</label>
-              <textarea
-                rows={3}
-                placeholder="Lo que quieras compartir..."
-                style={{
-                  width: "100%",
-                  padding: "11px 14px",
-                  borderRadius: 10,
-                  border: "2px solid var(--ink)",
-                  background: "rgba(255,255,255,0.15)",
-                  color: "white",
-                  fontFamily: "var(--font-body), Inter, sans-serif",
-                  fontSize: 15,
-                  outline: "none",
-                  resize: "vertical",
-                }}
-              />
-            </div>
-
-            <button type="submit" className="btn-dark" style={{ width: "100%", marginTop: 4 }}>
-              ENVIAME MI ORIENTACIÓN
-            </button>
-          </div>
+          <OrientationForm />
         </div>
       </section>
     </>

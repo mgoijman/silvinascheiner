@@ -10,14 +10,14 @@ export const metadata: Metadata = {
     "Conseguí Distancias del corazón de Silvina Scheiner en formato digital o físico. Entrega inmediata por email. Envíos a todo Argentina.",
 };
 
-const EXPRESSATE =
-  "https://expressate.com.ar/producto/libro-distancias-del-corazon/";
+const MP_DIGITAL =
+  "https://www.mercadopago.com.ar/checkout/v1/payment/redirect/00d0fb5a-d0ad-45a5-99f1-96240c4842d5/payment-option-form/?preference-id=62905811-14aaa4df-acef-4214-ade1-a21aa2e7bb57&router-request-id=01910df3-4de5-4d55-85e0-249f6a28dd7f&p=1aa1d6af20e5630580d9889e932a0af5";
 const WA_FISICO =
-  "https://wa.me/5491100000000?text=Hola%20Silvina%2C%20me%20interesa%20comprar%20el%20libro%20f%C3%ADsico%20de%20Distancias%20del%20coraz%C3%B3n.%20%C2%BFC%C3%BAl%20es%20el%20precio%20y%20c%C3%B3mo%20es%20el%20env%C3%ADo%3F";
+  "https://wa.me/5491159264582?text=Hola%20Silvina%2C%20me%20interesa%20comprar%20el%20libro%20f%C3%ADsico%20de%20Distancias%20del%20coraz%C3%B3n.%20%C2%BFC%C3%BAl%20es%20el%20precio%20y%20c%C3%B3mo%20es%20el%20env%C3%ADo%3F";
 const WA_AUDIO =
-  "https://wa.me/5491100000000?text=Hola%20Silvina%2C%20me%20interesa%20el%20audiolibro%20de%20Distancias%20del%20coraz%C3%B3n.%20%C2%BFCu%C3%A1ndo%20va%20a%20estar%20disponible%3F";
+  "https://wa.me/5491159264582?text=Hola%20Silvina%2C%20me%20interesa%20el%20audiolibro%20de%20Distancias%20del%20coraz%C3%B3n.%20%C2%BFCu%C3%A1ndo%20va%20a%20estar%20disponible%3F";
 const WA_DUDAS =
-  "https://wa.me/5491100000000?text=Hola%20Silvina%2C%20tengo%20una%20consulta%20sobre%20la%20compra%20del%20libro%20Distancias%20del%20coraz%C3%B3n";
+  "https://wa.me/5491159264582?text=Hola%20Silvina%2C%20tengo%20una%20consulta%20sobre%20la%20compra%20del%20libro%20Distancias%20del%20coraz%C3%B3n";
 
 const display = "var(--font-display), 'Archivo Black', sans-serif";
 const body    = "var(--font-body), Inter, sans-serif";
@@ -100,7 +100,7 @@ export default function ComprarPage() {
             </p>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
               <a
-                href={EXPRESSATE}
+                href={MP_DIGITAL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary"
@@ -190,18 +190,19 @@ export default function ComprarPage() {
                 background: "var(--orange)",
                 border: "2px solid var(--ink)",
                 borderRadius: "var(--radius-card)",
-                padding: "36px 28px 28px",
+                overflow: "hidden",
                 display: "flex",
                 flexDirection: "column",
-                gap: 16,
                 boxShadow: "6px 6px 0 var(--ink)",
               }}
             >
+              {/* Badge over image */}
               <span
                 style={{
                   position: "absolute",
-                  top: -14,
+                  top: 12,
                   left: 20,
+                  zIndex: 10,
                   background: "var(--yellow)",
                   color: "var(--ink)",
                   border: "2px solid var(--ink)",
@@ -215,32 +216,42 @@ export default function ComprarPage() {
               >
                 Más elegido
               </span>
-              <div>
-                <p style={{ fontFamily: display, fontSize: 24, color: "white", margin: "0 0 4px", fontWeight: 700 }}>
-                  Digital
-                </p>
-                <p style={{ fontFamily: body, fontSize: 13, color: "rgba(255,255,255,0.7)", margin: 0 }}>
-                  PDF · enviado por email
-                </p>
+              <div style={{ position: "relative", height: 220, background: "rgba(0,0,0,0.12)", flexShrink: 0 }}>
+                <Image
+                  src="/images/book/book-digital.png"
+                  alt="Distancias del corazón — formato digital PDF"
+                  fill
+                  style={{ objectFit: "cover", objectPosition: "center top" }}
+                />
               </div>
-              <p style={{ fontFamily: display, fontSize: 38, color: "white", margin: 0, fontWeight: 700, lineHeight: 1 }}>
-                $20.000{" "}
-                <span style={{ fontSize: 16, opacity: 0.7, fontWeight: 400, fontFamily: body }}>ARS</span>
-              </p>
-              <p style={{ fontFamily: body, fontSize: 15, color: "rgba(255,255,255,0.88)", margin: 0, lineHeight: 1.6 }}>
-                Recibís el libro completo en tu email al instante, desde cualquier parte del mundo.
-              </p>
-              <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 8, flexGrow: 1 }}>
-                {["Entrega inmediata por email", "PDF de alta calidad", "Compatible con cualquier dispositivo", "Sin costo de envío"].map((p) => (
-                  <li key={p} style={{ fontFamily: body, fontSize: 14, color: "rgba(255,255,255,0.88)", display: "flex", alignItems: "flex-start", gap: 8 }}>
-                    <span style={{ color: "var(--yellow)", flexShrink: 0, fontWeight: 700 }}>✓</span>
-                    {p}
-                  </li>
-                ))}
-              </ul>
-              <a href={EXPRESSATE} target="_blank" rel="noopener noreferrer" className="btn-dark" style={{ textAlign: "center" }}>
-                COMPRAR DIGITAL
-              </a>
+              <div style={{ padding: "24px 24px 28px", display: "flex", flexDirection: "column", gap: 16, flexGrow: 1 }}>
+                <div>
+                  <p style={{ fontFamily: display, fontSize: 24, color: "white", margin: "0 0 4px", fontWeight: 700 }}>
+                    Digital
+                  </p>
+                  <p style={{ fontFamily: body, fontSize: 13, color: "rgba(255,255,255,0.7)", margin: 0 }}>
+                    PDF · enviado por email
+                  </p>
+                </div>
+                <p style={{ fontFamily: display, fontSize: 38, color: "white", margin: 0, fontWeight: 700, lineHeight: 1 }}>
+                  $20.000{" "}
+                  <span style={{ fontSize: 16, opacity: 0.7, fontWeight: 400, fontFamily: body }}>ARS</span>
+                </p>
+                <p style={{ fontFamily: body, fontSize: 15, color: "rgba(255,255,255,0.88)", margin: 0, lineHeight: 1.6 }}>
+                  Recibís el libro completo en tu email al instante, desde cualquier parte del mundo.
+                </p>
+                <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 8, flexGrow: 1 }}>
+                  {["Entrega inmediata por email", "PDF de alta calidad", "Compatible con cualquier dispositivo", "Sin costo de envío"].map((p) => (
+                    <li key={p} style={{ fontFamily: body, fontSize: 14, color: "rgba(255,255,255,0.88)", display: "flex", alignItems: "flex-start", gap: 8 }}>
+                      <span style={{ color: "var(--yellow)", flexShrink: 0, fontWeight: 700 }}>✓</span>
+                      {p}
+                    </li>
+                  ))}
+                </ul>
+                <a href={MP_DIGITAL} target="_blank" rel="noopener noreferrer" className="btn-dark" style={{ textAlign: "center" }}>
+                  COMPRAR DIGITAL
+                </a>
+              </div>
             </div>
 
             {/* ── Físico ── */}
@@ -249,38 +260,47 @@ export default function ComprarPage() {
                 background: "white",
                 border: "2px solid var(--ink)",
                 borderRadius: "var(--radius-card)",
-                padding: "32px 28px 28px",
+                overflow: "hidden",
                 display: "flex",
                 flexDirection: "column",
-                gap: 16,
                 boxShadow: "4px 4px 0 var(--ink)",
               }}
             >
-              <div>
-                <p style={{ fontFamily: display, fontSize: 24, color: "var(--ink)", margin: "0 0 4px", fontWeight: 700 }}>
-                  Físico
-                </p>
-                <p style={{ fontFamily: body, fontSize: 13, color: "var(--muted-ink)", margin: 0 }}>
-                  Libro impreso · solo Argentina
-                </p>
+              <div style={{ position: "relative", height: 220, background: "rgba(0,0,0,0.08)", flexShrink: 0 }}>
+                <Image
+                  src="/images/book/book-fisico.png"
+                  alt="Distancias del corazón — libro físico impreso"
+                  fill
+                  style={{ objectFit: "cover", objectPosition: "center top" }}
+                />
               </div>
-              <p style={{ fontFamily: display, fontSize: 28, color: "var(--ink)", margin: 0, fontWeight: 700, lineHeight: 1 }}>
-                Consultá precio
-              </p>
-              <p style={{ fontFamily: body, fontSize: 15, color: "var(--body)", margin: 0, lineHeight: 1.6 }}>
-                El libro en papel, enviado a tu puerta. Envíos por Correo Argentino o Andreani a todo el país.
-              </p>
-              <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 8, flexGrow: 1 }}>
-                {["Envíos a todo Argentina", "5 a 7 días hábiles", "Costo de envío a convenir", "Empaque cuidado"].map((p) => (
-                  <li key={p} style={{ fontFamily: body, fontSize: 14, color: "var(--body)", display: "flex", alignItems: "flex-start", gap: 8 }}>
-                    <span style={{ color: "var(--green)", flexShrink: 0, fontWeight: 700 }}>✓</span>
-                    {p}
-                  </li>
-                ))}
-              </ul>
-              <a href={WA_FISICO} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ textAlign: "center" }}>
-                CONSULTAR POR WHATSAPP
-              </a>
+              <div style={{ padding: "24px 24px 28px", display: "flex", flexDirection: "column", gap: 16, flexGrow: 1 }}>
+                <div>
+                  <p style={{ fontFamily: display, fontSize: 24, color: "var(--ink)", margin: "0 0 4px", fontWeight: 700 }}>
+                    Físico
+                  </p>
+                  <p style={{ fontFamily: body, fontSize: 13, color: "var(--muted-ink)", margin: 0 }}>
+                    Libro impreso · solo Argentina
+                  </p>
+                </div>
+                <p style={{ fontFamily: display, fontSize: 28, color: "var(--ink)", margin: 0, fontWeight: 700, lineHeight: 1 }}>
+                  Consultá precio
+                </p>
+                <p style={{ fontFamily: body, fontSize: 15, color: "var(--body)", margin: 0, lineHeight: 1.6 }}>
+                  El libro en papel, enviado a tu puerta. Envíos por Correo Argentino o Andreani a todo el país.
+                </p>
+                <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 8, flexGrow: 1 }}>
+                  {["Envíos a todo Argentina", "5 a 7 días hábiles", "Costo de envío a convenir", "Empaque cuidado"].map((p) => (
+                    <li key={p} style={{ fontFamily: body, fontSize: 14, color: "var(--body)", display: "flex", alignItems: "flex-start", gap: 8 }}>
+                      <span style={{ color: "var(--green)", flexShrink: 0, fontWeight: 700 }}>✓</span>
+                      {p}
+                    </li>
+                  ))}
+                </ul>
+                <a href={WA_FISICO} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ textAlign: "center" }}>
+                  CONSULTAR POR WHATSAPP
+                </a>
+              </div>
             </div>
 
             {/* ── Audiolibro ── */}
@@ -289,39 +309,48 @@ export default function ComprarPage() {
                 background: "var(--green-soft)",
                 border: "2px solid var(--ink)",
                 borderRadius: "var(--radius-card)",
-                padding: "32px 28px 28px",
+                overflow: "hidden",
                 display: "flex",
                 flexDirection: "column",
-                gap: 16,
                 boxShadow: "4px 4px 0 var(--ink)",
                 opacity: 0.88,
               }}
             >
-              <div>
-                <p style={{ fontFamily: display, fontSize: 24, color: "var(--ink)", margin: "0 0 4px", fontWeight: 700 }}>
-                  Audiolibro
-                </p>
-                <p style={{ fontFamily: body, fontSize: 13, color: "var(--muted-ink)", margin: 0 }}>
-                  Para escuchar donde estés
-                </p>
+              <div style={{ position: "relative", height: 220, background: "rgba(0,0,0,0.08)", flexShrink: 0 }}>
+                <Image
+                  src="/images/book/book-audio.png"
+                  alt="Distancias del corazón — audiolibro"
+                  fill
+                  style={{ objectFit: "cover", objectPosition: "center top" }}
+                />
               </div>
-              <p style={{ fontFamily: display, fontSize: 26, color: "var(--ink)", margin: 0, fontWeight: 700, lineHeight: 1 }}>
-                Próximamente
-              </p>
-              <p style={{ fontFamily: body, fontSize: 15, color: "var(--body)", margin: 0, lineHeight: 1.6 }}>
-                El audiolibro está en producción. Dejá tu contacto y te avisamos cuando esté disponible.
-              </p>
-              <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 8, flexGrow: 1 }}>
-                {["En producción", "Anotate para saber primero", "Te avisamos por WhatsApp o email"].map((p) => (
-                  <li key={p} style={{ fontFamily: body, fontSize: 14, color: "var(--body)", display: "flex", alignItems: "flex-start", gap: 8 }}>
-                    <span style={{ color: "var(--green-dark)", flexShrink: 0, fontWeight: 700 }}>✓</span>
-                    {p}
-                  </li>
-                ))}
-              </ul>
-              <a href={WA_AUDIO} target="_blank" rel="noopener noreferrer" className="btn-dark" style={{ textAlign: "center" }}>
-                AVISAME CUANDO ESTÉ
-              </a>
+              <div style={{ padding: "24px 24px 28px", display: "flex", flexDirection: "column", gap: 16, flexGrow: 1 }}>
+                <div>
+                  <p style={{ fontFamily: display, fontSize: 24, color: "var(--ink)", margin: "0 0 4px", fontWeight: 700 }}>
+                    Audiolibro
+                  </p>
+                  <p style={{ fontFamily: body, fontSize: 13, color: "var(--muted-ink)", margin: 0 }}>
+                    Para escuchar donde estés
+                  </p>
+                </div>
+                <p style={{ fontFamily: display, fontSize: 26, color: "var(--ink)", margin: 0, fontWeight: 700, lineHeight: 1 }}>
+                  Próximamente
+                </p>
+                <p style={{ fontFamily: body, fontSize: 15, color: "var(--body)", margin: 0, lineHeight: 1.6 }}>
+                  El audiolibro está en producción. Dejá tu contacto y te avisamos cuando esté disponible.
+                </p>
+                <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 8, flexGrow: 1 }}>
+                  {["En producción", "Anotate para saber primero", "Te avisamos por WhatsApp o email"].map((p) => (
+                    <li key={p} style={{ fontFamily: body, fontSize: 14, color: "var(--body)", display: "flex", alignItems: "flex-start", gap: 8 }}>
+                      <span style={{ color: "var(--green-dark)", flexShrink: 0, fontWeight: 700 }}>✓</span>
+                      {p}
+                    </li>
+                  ))}
+                </ul>
+                <a href={WA_AUDIO} target="_blank" rel="noopener noreferrer" className="btn-dark" style={{ textAlign: "center" }}>
+                  AVISAME CUANDO ESTÉ
+                </a>
+              </div>
             </div>
           </div>
         </div>

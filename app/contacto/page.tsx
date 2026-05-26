@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import type { Metadata } from "next";
 import SectionLabel from "@/components/SectionLabel";
 import StickerBlob from "@/components/StickerBlob";
 
@@ -31,7 +30,7 @@ const inputStyle: React.CSSProperties = {
   outline: "none",
 };
 
-const WA = "https://wa.me/5491100000000?text=Hola%20Silvina%2C%20quer%C3%ADa%20consultarte%20algo";
+const WA = "https://wa.me/5491159264582?text=Hola%20Silvina%2C%20quer%C3%ADa%20consultarte%20algo";
 
 export default function ContactoPage() {
   const [form, setForm] = useState({ nombre: "", email: "", asunto: "", mensaje: "" });

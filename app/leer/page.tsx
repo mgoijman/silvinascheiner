@@ -9,9 +9,9 @@ import WaveDivider from "@/components/WaveDivider";
 import HeroImageFrame from "@/components/HeroImageFrame";
 
 const WA_FISICO =
-  "https://wa.me/5491100000000?text=Hola%20Silvina%2C%20me%20interesa%20comprar%20el%20libro%20f%C3%ADsico%20de%20Distancias%20del%20coraz%C3%B3n.%20%C2%BFC%C3%BAl%20es%20el%20precio%20y%20c%C3%B3mo%20es%20el%20env%C3%ADo%3F";
+  "https://wa.me/5491159264582?text=Hola%20Silvina%2C%20me%20interesa%20comprar%20el%20libro%20f%C3%ADsico%20de%20Distancias%20del%20coraz%C3%B3n.%20%C2%BFC%C3%BAl%20es%20el%20precio%20y%20c%C3%B3mo%20es%20el%20env%C3%ADo%3F";
 const WA_AUDIO =
-  "https://wa.me/5491100000000?text=Hola%20Silvina%2C%20me%20interesa%20el%20audiolibro%20de%20Distancias%20del%20coraz%C3%B3n.%20%C2%BFCu%C3%A1ndo%20va%20a%20estar%20disponible%3F";
+  "https://wa.me/5491159264582?text=Hola%20Silvina%2C%20me%20interesa%20el%20audiolibro%20de%20Distancias%20del%20coraz%C3%B3n.%20%C2%BFCu%C3%A1ndo%20va%20a%20estar%20disponible%3F";
 
 const labelStyle: React.CSSProperties = {
   fontFamily: "var(--font-body), 'Inter', sans-serif",

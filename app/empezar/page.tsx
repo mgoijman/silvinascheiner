@@ -317,7 +317,7 @@ export default function EmpezarPage() {
             El primer paso no tiene que ser perfecto. Solo tiene que ser posible. Y si en algún momento tenés dudas, escribinos por WhatsApp.
           </p>
           <a
-            href="https://wa.me/5491100000000"
+            href="https://wa.me/5491159264582"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary"

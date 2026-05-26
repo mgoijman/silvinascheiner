@@ -51,7 +51,7 @@ export default function TestimonialCard({
         }}
         aria-hidden="true"
       >
-        "
+        &ldquo;
       </span>
 
       <p

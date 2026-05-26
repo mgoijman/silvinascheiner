@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import SectionLabel from "@/components/SectionLabel";
 import StickerBlob from "@/components/StickerBlob";
-import TapeHighlight from "@/components/TapeHighlight";
 import WaveDivider from "@/components/WaveDivider";
 import HeroImageFrame from "@/components/HeroImageFrame";
 import TestimonialCard from "@/components/TestimonialCard";
@@ -306,9 +305,12 @@ export default function HomePage() {
                   </li>
                 ))}
               </ul>
-              <div>
+              <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
                 <Link href="/leer" className="btn-dark">
                   QUIERO LEER
+                </Link>
+                <Link href="/comprar" className="btn-secondary" style={{ background: "white" }}>
+                  COMPRAR EL LIBRO
                 </Link>
               </div>
             </div>
