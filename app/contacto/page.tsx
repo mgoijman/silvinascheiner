@@ -32,13 +32,56 @@ const inputStyle: React.CSSProperties = {
 
 const WA = "https://wa.me/5491159264582?text=Hola%20Silvina%2C%20quer%C3%ADa%20consultarte%20algo";
 
+const ASUNTO_LABELS: Record<string, string> = {
+  compra:            "Compra del libro",
+  talleres:          "Talleres y grupos de escritura",
+  "hijos-golondrina": "Hijos Golondrina",
+  envio:             "Envío y entrega",
+  otro:              "Otro",
+};
+
 export default function ContactoPage() {
   const [form, setForm] = useState({ nombre: "", email: "", asunto: "", mensaje: "" });
   const [sent, setSent] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (form.nombre && form.email && form.mensaje) setSent(true);
+    if (!form.nombre || !form.email || !form.mensaje) return;
+
+    const asuntoLabel = ASUNTO_LABELS[form.asunto] ?? form.asunto ?? "General";
+
+    // 1. Capture lead to Google Sheets via server-side API route (no CORS issues)
+    fetch("/api/capture", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        fuente:  asuntoLabel,
+        nombre:  form.nombre,
+        email:   form.email,
+        asunto:  asuntoLabel,
+        contame: form.mensaje,
+      }),
+    }).catch(() => {});
+
+    // 2. Open WhatsApp with pre-filled tagged message
+    const lines = [
+      `🏷️ [CONTACTO - ${asuntoLabel.toUpperCase()}]`,
+      "",
+      "Hola Silvina, te escribo desde el formulario de contacto.",
+      "",
+      `Nombre: ${form.nombre}`,
+      `Email: ${form.email}`,
+      ...(form.asunto ? [`Asunto: ${asuntoLabel}`] : []),
+      "",
+      `Mensaje:\n${form.mensaje}`,
+    ];
+    window.open(
+      `https://wa.me/5491159264582?text=${encodeURIComponent(lines.join("\n"))}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
+
+    setSent(true);
   };
 
   return (
@@ -321,7 +364,7 @@ export default function ContactoPage() {
                   alignItems: "center",
                 }}
               >
-                <span style={{ fontSize: 48 }}>🎉</span>
+                <span style={{ fontSize: 48 }}>💬</span>
                 <p
                   style={{
                     fontFamily: display,
@@ -331,10 +374,10 @@ export default function ContactoPage() {
                     margin: 0,
                   }}
                 >
-                  ¡Mensaje enviado!
+                  ¡WhatsApp abierto!
                 </p>
                 <p style={{ fontFamily: body, color: "var(--body)", fontSize: 16, margin: 0, lineHeight: 1.6 }}>
-                  Te respondo a <strong>{form.email}</strong> lo antes posible.
+                  Revisá que el mensaje esté completo y apretá <strong>Enviar</strong>. Silvina te responde pronto.
                 </p>
               </div>
             ) : (

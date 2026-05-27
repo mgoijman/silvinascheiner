@@ -47,7 +47,17 @@ export default function OrientationForm() {
 
     const label = BUSQUEDA_LABELS[busqueda] ?? busqueda;
 
+    // 1. Capture lead to Google Sheets via server-side API route (no CORS issues)
+    fetch("/api/capture", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ fuente: "Orientación", nombre, email, whatsapp, busqueda: label, contame }),
+    }).catch(() => {});
+
+    // 2. Open WhatsApp with pre-filled tagged message
     const lines: string[] = [
+      "🏷️ [ORIENTACIÓN]",
+      "",
       "Hola Silvina, completé el formulario de orientación 💬",
       "",
       `Nombre: ${nombre}`,

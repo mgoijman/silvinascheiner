@@ -79,7 +79,17 @@ export default function EnrollmentModal({
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
+    // 1. Capture lead to Google Sheets via server-side API route (no CORS issues)
+    fetch("/api/capture", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ fuente: tallerName, nombre, email, whatsapp, contame }),
+    }).catch(() => {});
+
+    // 2. Open WhatsApp with pre-filled tagged message
     const lines: string[] = [
+      `🏷️ [${tallerName.toUpperCase()}]`,
+      "",
       `Hola Silvina, quiero anotarme al taller "${tallerName}" 🙋`,
       "",
       `Nombre: ${nombre}`,
