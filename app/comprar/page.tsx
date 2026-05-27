@@ -12,12 +12,10 @@ export const metadata: Metadata = {
 
 const MP_DIGITAL =
   "https://www.mercadopago.com.ar/checkout/v1/payment/redirect/00d0fb5a-d0ad-45a5-99f1-96240c4842d5/payment-option-form/?preference-id=62905811-14aaa4df-acef-4214-ade1-a21aa2e7bb57&router-request-id=01910df3-4de5-4d55-85e0-249f6a28dd7f&p=1aa1d6af20e5630580d9889e932a0af5";
-const WA_FISICO =
-  "https://wa.me/5491159264582?text=Hola%20Silvina%2C%20me%20interesa%20comprar%20el%20libro%20f%C3%ADsico%20de%20Distancias%20del%20coraz%C3%B3n.%20%C2%BFC%C3%BAl%20es%20el%20precio%20y%20c%C3%B3mo%20es%20el%20env%C3%ADo%3F";
-const WA_AUDIO =
-  "https://wa.me/5491159264582?text=Hola%20Silvina%2C%20me%20interesa%20el%20audiolibro%20de%20Distancias%20del%20coraz%C3%B3n.%20%C2%BFCu%C3%A1ndo%20va%20a%20estar%20disponible%3F";
-const WA_DUDAS =
-  "https://wa.me/5491159264582?text=Hola%20Silvina%2C%20tengo%20una%20consulta%20sobre%20la%20compra%20del%20libro%20Distancias%20del%20coraz%C3%B3n";
+const WA_FISICO = `https://wa.me/5491159264582?text=${encodeURIComponent("🏷️ [COMPRA - LIBRO FÍSICO]\n\nHola Silvina, me interesa comprar el libro físico de Distancias del corazón. ¿Cuál es el precio y cómo es el envío?")}`;
+const WA_AUDIO  = `https://wa.me/5491159264582?text=${encodeURIComponent("🏷️ [INTERÉS - AUDIOLIBRO]\n\nHola Silvina, me interesa el audiolibro de Distancias del corazón. ¿Cuándo va a estar disponible?")}`;
+const WA_DUDAS  = `https://wa.me/5491159264582?text=${encodeURIComponent("🏷️ [COMPRA - CONSULTA]\n\nHola Silvina, tengo una consulta sobre la compra del libro Distancias del corazón.")}`;
+
 
 const display = "var(--font-display), 'Archivo Black', sans-serif";
 const body    = "var(--font-body), Inter, sans-serif";

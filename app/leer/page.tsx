@@ -8,10 +8,9 @@ import StickerBlob from "@/components/StickerBlob";
 import WaveDivider from "@/components/WaveDivider";
 import HeroImageFrame from "@/components/HeroImageFrame";
 
-const WA_FISICO =
-  "https://wa.me/5491159264582?text=Hola%20Silvina%2C%20me%20interesa%20comprar%20el%20libro%20f%C3%ADsico%20de%20Distancias%20del%20coraz%C3%B3n.%20%C2%BFC%C3%BAl%20es%20el%20precio%20y%20c%C3%B3mo%20es%20el%20env%C3%ADo%3F";
-const WA_AUDIO =
-  "https://wa.me/5491159264582?text=Hola%20Silvina%2C%20me%20interesa%20el%20audiolibro%20de%20Distancias%20del%20coraz%C3%B3n.%20%C2%BFCu%C3%A1ndo%20va%20a%20estar%20disponible%3F";
+const WA_FISICO = `https://wa.me/5491159264582?text=${encodeURIComponent("🏷️ [COMPRA - LIBRO FÍSICO]\n\nHola Silvina, me interesa comprar el libro físico de Distancias del corazón. ¿Cuál es el precio y cómo es el envío?")}`;
+const WA_AUDIO  = `https://wa.me/5491159264582?text=${encodeURIComponent("🏷️ [INTERÉS - AUDIOLIBRO]\n\nHola Silvina, me interesa el audiolibro de Distancias del corazón. ¿Cuándo va a estar disponible?")}`;
+
 
 const labelStyle: React.CSSProperties = {
   fontFamily: "var(--font-body), 'Inter', sans-serif",
@@ -56,6 +55,54 @@ export default function LeerPage() {
   const [cap1Sent, setCap1Sent] = useState(false);
   const [hijosForm, setHijosForm] = useState({ nombre: "", email: "", whatsapp: "", ciudad: "", mensaje: "" });
   const [hijosSent, setHijosSent] = useState(false);
+
+  function handleCap1Submit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!cap1Form.nombre || !cap1Form.email) return;
+
+    fetch("/api/capture", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ fuente: "Cap. 1 Gratis", nombre: cap1Form.nombre, email: cap1Form.email, whatsapp: cap1Form.whatsapp }),
+    }).catch(() => {});
+
+    const lines = [
+      "🏷️ [CAP. 1 GRATIS]",
+      "",
+      "Hola Silvina, quiero recibir el primer capítulo de Distancias del corazón.",
+      "",
+      `Nombre: ${cap1Form.nombre}`,
+      `Email: ${cap1Form.email}`,
+      ...(cap1Form.whatsapp ? [`WhatsApp: ${cap1Form.whatsapp}`] : []),
+    ];
+    window.open(`https://wa.me/5491159264582?text=${encodeURIComponent(lines.join("\n"))}`, "_blank", "noopener,noreferrer");
+    setCap1Sent(true);
+  }
+
+  function handleHijosSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!hijosForm.nombre || !hijosForm.email) return;
+
+    fetch("/api/capture", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ fuente: "Hijos Golondrina", nombre: hijosForm.nombre, email: hijosForm.email, whatsapp: hijosForm.whatsapp, busqueda: hijosForm.ciudad, contame: hijosForm.mensaje }),
+    }).catch(() => {});
+
+    const lines = [
+      "🏷️ [HIJOS GOLONDRINA]",
+      "",
+      "Hola Silvina, quiero sumarme a la comunidad Hijos Golondrina.",
+      "",
+      `Nombre: ${hijosForm.nombre}`,
+      `Email: ${hijosForm.email}`,
+      `WhatsApp: ${hijosForm.whatsapp}`,
+      ...(hijosForm.ciudad  ? [`Ciudad/País: ${hijosForm.ciudad}`]     : []),
+      ...(hijosForm.mensaje ? [`Me acerca: ${hijosForm.mensaje}`]      : []),
+    ];
+    window.open(`https://wa.me/5491159264582?text=${encodeURIComponent(lines.join("\n"))}`, "_blank", "noopener,noreferrer");
+    setHijosSent(true);
+  }
 
   return (
     <>
@@ -129,9 +176,9 @@ export default function LeerPage() {
           <div style={{ background: "var(--orange)", border: "2px solid var(--ink)", borderRadius: "var(--radius-card)", padding: "36px", display: "flex", flexDirection: "column", gap: 16, boxShadow: "6px 6px 0 var(--ink)" }}>
             {cap1Sent ? (
               <div style={{ textAlign: "center", padding: "24px 0", display: "flex", flexDirection: "column", gap: 16 }}>
-                <p style={{ fontFamily: "var(--font-script), 'Caveat', cursive", fontStyle: "italic", fontSize: 36, color: "white", margin: 0 }}>¡Ya está en camino!</p>
+                <p style={{ fontFamily: "var(--font-script), 'Caveat', cursive", fontStyle: "italic", fontSize: 36, color: "white", margin: 0 }}>¡WhatsApp abierto!</p>
                 <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", color: "rgba(255,255,255,0.9)", fontSize: 16, margin: 0, lineHeight: 1.6 }}>
-                  Revisá tu bandeja — el primer capítulo de <em>Distancias del corazón</em> llega en minutos.
+                  Revisá que el mensaje esté completo y apretá <strong>Enviar</strong>. Silvina te manda el capítulo enseguida.
                 </p>
               </div>
             ) : (
@@ -142,7 +189,7 @@ export default function LeerPage() {
                 <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", color: "rgba(255,255,255,0.9)", fontSize: 15, margin: 0, lineHeight: 1.6 }}>
                   Dejame tu email y te lo mando para que puedas conocer la voz del libro sin compromiso.
                 </p>
-                <form onSubmit={(e) => { e.preventDefault(); if (cap1Form.nombre && cap1Form.email) setCap1Sent(true); }} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                <form onSubmit={handleCap1Submit} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                   {(["Nombre", "Email", "WhatsApp"] as const).map(f => (
                     <div key={f}>
                       <label style={{ ...labelStyle, color: "rgba(255,255,255,0.8)" }}>{f}{f === "WhatsApp" ? " (opcional)" : " *"}</label>
@@ -304,9 +351,9 @@ export default function LeerPage() {
           <div style={{ background: "white", border: "2px solid var(--ink)", borderRadius: "var(--radius-card)", padding: "36px", display: "flex", flexDirection: "column", gap: 16, boxShadow: "6px 6px 0 var(--ink)" }}>
             {hijosSent ? (
               <div style={{ textAlign: "center", padding: "24px 0", display: "flex", flexDirection: "column", gap: 16 }}>
-                <p style={{ fontFamily: "var(--font-script), 'Caveat', cursive", fontStyle: "italic", fontSize: 36, color: "var(--green-dark)", margin: 0 }}>¡Bienvenida!</p>
+                <p style={{ fontFamily: "var(--font-script), 'Caveat', cursive", fontStyle: "italic", fontSize: 36, color: "var(--green-dark)", margin: 0 }}>¡WhatsApp abierto!</p>
                 <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", color: "var(--body)", fontSize: 16, margin: 0, lineHeight: 1.6 }}>
-                  Te contactamos pronto con toda la información sobre Hijos Golondrina.
+                  Revisá que el mensaje esté completo y apretá <strong>Enviar</strong>. Silvina te escribe pronto con toda la info.
                 </p>
               </div>
             ) : (
@@ -317,7 +364,7 @@ export default function LeerPage() {
                 <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", color: "var(--body)", fontSize: 14, margin: 0, lineHeight: 1.6 }}>
                   Dejame tus datos y te mando la información por WhatsApp.
                 </p>
-                <form onSubmit={(e) => { e.preventDefault(); if (hijosForm.nombre && hijosForm.email) setHijosSent(true); }} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                <form onSubmit={handleHijosSubmit} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                   {[
                     { key: "nombre", label: "Nombre", type: "text", placeholder: "Tu nombre", required: true },
                     { key: "email", label: "Email", type: "email", placeholder: "hola@email.com", required: true },
