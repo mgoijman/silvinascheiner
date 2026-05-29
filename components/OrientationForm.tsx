@@ -1,6 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { buildLead, captureLead } from "@/lib/lead";
+import { Analytics } from "@/lib/analytics";
 
 const BUSQUEDA_LABELS: Record<string, string> = {
   empezar:  "Quiero empezar a escribir",
@@ -35,24 +38,38 @@ const labelStyle: React.CSSProperties = {
 };
 
 export default function OrientationForm() {
+  const router  = useRouter();
   const [nombre,   setNombre]   = useState("");
   const [email,    setEmail]    = useState("");
   const [whatsapp, setWhatsapp] = useState("");
   const [busqueda, setBusqueda] = useState("");
   const [contame,  setContame]  = useState("");
-  const [sent,     setSent]     = useState(false);
+  const [loading,  setLoading]  = useState(false);
+  const [errors,   setErrors]   = useState<{ nombre?: string; email?: string }>({});
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
+    const errs: { nombre?: string; email?: string } = {};
+    if (!nombre.trim()) errs.nombre = "El nombre es requerido";
+    if (!email.trim())  errs.email  = "El email es requerido";
+    if (Object.keys(errs).length) { setErrors(errs); return; }
+
+    setLoading(true);
     const label = BUSQUEDA_LABELS[busqueda] ?? busqueda;
 
-    // 1. Capture lead to Google Sheets via server-side API route (no CORS issues)
-    fetch("/api/capture", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ fuente: "Orientación", nombre, email, whatsapp, busqueda: label, contame }),
-    }).catch(() => {});
+    // 1. Capture normalized lead
+    const payload = buildLead({
+      name:             nombre,
+      email,
+      whatsapp:         whatsapp || undefined,
+      interest:         "orientation",
+      product_or_service: label || undefined,
+      form_type:        "orientation",
+      message:          contame || undefined,
+    });
+    await captureLead(payload);
+    Analytics.generateLead({ form_type: "orientation", interest: "orientation" });
 
     // 2. Open WhatsApp with pre-filled tagged message
     const lines: string[] = [
@@ -66,10 +83,13 @@ export default function OrientationForm() {
       ...(busqueda ? [`Estoy buscando: ${label}`] : []),
       ...(contame  ? [`Contame más: ${contame}`]  : []),
     ];
+    window.open(
+      `https://wa.me/5491159264582?text=${encodeURIComponent(lines.join("\n"))}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
 
-    const url = `https://wa.me/5491159264582?text=${encodeURIComponent(lines.join("\n"))}`;
-    window.open(url, "_blank", "noopener,noreferrer");
-    setSent(true);
+    router.push("/gracias/orientacion");
   }
 
   return (
@@ -136,7 +156,14 @@ export default function OrientationForm() {
           <select
             value={busqueda}
             onChange={e => setBusqueda(e.target.value)}
-            style={{ ...inputStyle, appearance: "none" }}
+            style={{
+              ...inputStyle,
+              backgroundImage:    `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='white' strokeWidth='2' fill='none' strokeLinecap='round'/%3E%3C/svg%3E")`,
+              backgroundRepeat:   "no-repeat",
+              backgroundPosition: "right 14px center",
+              paddingRight:       40,
+              appearance:         "none",
+            } as React.CSSProperties}
           >
             <option value="">Elegí una opción</option>
             <option value="empezar">Quiero empezar a escribir</option>
@@ -159,13 +186,16 @@ export default function OrientationForm() {
           />
         </div>
 
+        {errors.nombre && <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", fontSize: 12, color: "var(--yellow)", margin: "-8px 0 0" }}>{errors.nombre}</p>}
+        {errors.email  && <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", fontSize: 12, color: "var(--yellow)", margin: "-8px 0 0" }}>{errors.email}</p>}
+
         <button
           type="submit"
           className="btn-dark"
-          style={{ width: "100%", marginTop: 4 }}
-          disabled={!nombre || !email}
+          style={{ width: "100%", marginTop: 4, opacity: loading ? 0.7 : 1, cursor: loading ? "wait" : "pointer" }}
+          disabled={loading}
         >
-          {sent ? "¡LISTO! ABRÍ WHATSAPP PARA ENVIAR" : "ENVIAME MI ORIENTACIÓN"}
+          {loading ? "ENVIANDO…" : "ENVIAME MI ORIENTACIÓN"}
         </button>
 
         <p style={{

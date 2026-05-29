@@ -3,10 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import SectionLabel from "@/components/SectionLabel";
 import StickerBlob from "@/components/StickerBlob";
 import WaveDivider from "@/components/WaveDivider";
 import HeroImageFrame from "@/components/HeroImageFrame";
+import { buildLead, captureLead } from "@/lib/lead";
+import { Analytics } from "@/lib/analytics";
 
 const WA_FISICO = `https://wa.me/5491159264582?text=${encodeURIComponent("🏷️ [COMPRA - LIBRO FÍSICO]\n\nHola Silvina, me interesa comprar el libro físico de Distancias del corazón. ¿Cuál es el precio y cómo es el envío?")}`;
 const WA_AUDIO  = `https://wa.me/5491159264582?text=${encodeURIComponent("🏷️ [INTERÉS - AUDIOLIBRO]\n\nHola Silvina, me interesa el audiolibro de Distancias del corazón. ¿Cuándo va a estar disponible?")}`;
@@ -51,20 +54,31 @@ function ThemeTag({ text }: { text: string }) {
 }
 
 export default function LeerPage() {
+  const router  = useRouter();
   const [cap1Form, setCap1Form] = useState({ nombre: "", email: "", whatsapp: "" });
-  const [cap1Sent, setCap1Sent] = useState(false);
+  const [cap1Errors, setCap1Errors] = useState<{ nombre?: string; email?: string }>({});
+  const [cap1Loading, setCap1Loading] = useState(false);
   const [hijosForm, setHijosForm] = useState({ nombre: "", email: "", whatsapp: "", ciudad: "", mensaje: "" });
-  const [hijosSent, setHijosSent] = useState(false);
+  const [hijosErrors, setHijosErrors] = useState<{ nombre?: string; email?: string }>({});
+  const [hijosLoading, setHijosLoading] = useState(false);
 
-  function handleCap1Submit(e: React.FormEvent) {
+  async function handleCap1Submit(e: React.FormEvent) {
     e.preventDefault();
-    if (!cap1Form.nombre || !cap1Form.email) return;
+    const errs: { nombre?: string; email?: string } = {};
+    if (!cap1Form.nombre) errs.nombre = "El nombre es requerido";
+    if (!cap1Form.email)  errs.email  = "El email es requerido";
+    if (Object.keys(errs).length) { setCap1Errors(errs); return; }
 
-    fetch("/api/capture", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ fuente: "Cap. 1 Gratis", nombre: cap1Form.nombre, email: cap1Form.email, whatsapp: cap1Form.whatsapp }),
-    }).catch(() => {});
+    setCap1Loading(true);
+    const payload = buildLead({
+      name:      cap1Form.nombre,
+      email:     cap1Form.email,
+      whatsapp:  cap1Form.whatsapp || undefined,
+      interest:  "first_chapter",
+      form_type: "cap1",
+    });
+    await captureLead(payload);
+    Analytics.generateLead({ form_type: "cap1", interest: "first_chapter" });
 
     const lines = [
       "🏷️ [CAP. 1 GRATIS]",
@@ -76,18 +90,29 @@ export default function LeerPage() {
       ...(cap1Form.whatsapp ? [`WhatsApp: ${cap1Form.whatsapp}`] : []),
     ];
     window.open(`https://wa.me/5491159264582?text=${encodeURIComponent(lines.join("\n"))}`, "_blank", "noopener,noreferrer");
-    setCap1Sent(true);
+    router.push("/gracias/capitulo-1");
   }
 
-  function handleHijosSubmit(e: React.FormEvent) {
+  async function handleHijosSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!hijosForm.nombre || !hijosForm.email) return;
+    const errs: { nombre?: string; email?: string } = {};
+    if (!hijosForm.nombre) errs.nombre = "El nombre es requerido";
+    if (!hijosForm.email)  errs.email  = "El email es requerido";
+    if (Object.keys(errs).length) { setHijosErrors(errs); return; }
 
-    fetch("/api/capture", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ fuente: "Hijos Golondrina", nombre: hijosForm.nombre, email: hijosForm.email, whatsapp: hijosForm.whatsapp, busqueda: hijosForm.ciudad, contame: hijosForm.mensaje }),
-    }).catch(() => {});
+    setHijosLoading(true);
+    const payload = buildLead({
+      name:      hijosForm.nombre,
+      email:     hijosForm.email,
+      whatsapp:  hijosForm.whatsapp || undefined,
+      interest:  "community",
+      form_type: "community",
+      city:      hijosForm.ciudad || undefined,
+      message:   hijosForm.mensaje || undefined,
+    });
+    await captureLead(payload);
+    Analytics.generateLead({ form_type: "community", interest: "community" });
+    Analytics.communityInterest({ community: "Hijos Golondrina" });
 
     const lines = [
       "🏷️ [HIJOS GOLONDRINA]",
@@ -96,12 +121,12 @@ export default function LeerPage() {
       "",
       `Nombre: ${hijosForm.nombre}`,
       `Email: ${hijosForm.email}`,
-      `WhatsApp: ${hijosForm.whatsapp}`,
-      ...(hijosForm.ciudad  ? [`Ciudad/País: ${hijosForm.ciudad}`]     : []),
-      ...(hijosForm.mensaje ? [`Me acerca: ${hijosForm.mensaje}`]      : []),
+      ...(hijosForm.whatsapp ? [`WhatsApp: ${hijosForm.whatsapp}`] : []),
+      ...(hijosForm.ciudad   ? [`Ciudad/País: ${hijosForm.ciudad}`] : []),
+      ...(hijosForm.mensaje  ? [`Me acerca: ${hijosForm.mensaje}`]  : []),
     ];
     window.open(`https://wa.me/5491159264582?text=${encodeURIComponent(lines.join("\n"))}`, "_blank", "noopener,noreferrer");
-    setHijosSent(true);
+    router.push("/gracias/comunidad");
   }
 
   return (
@@ -174,39 +199,45 @@ export default function LeerPage() {
           </div>
 
           <div style={{ background: "var(--orange)", border: "2px solid var(--ink)", borderRadius: "var(--radius-card)", padding: "36px", display: "flex", flexDirection: "column", gap: 16, boxShadow: "6px 6px 0 var(--ink)" }}>
-            {cap1Sent ? (
-              <div style={{ textAlign: "center", padding: "24px 0", display: "flex", flexDirection: "column", gap: 16 }}>
-                <p style={{ fontFamily: "var(--font-script), 'Caveat', cursive", fontStyle: "italic", fontSize: 36, color: "white", margin: 0 }}>¡WhatsApp abierto!</p>
-                <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", color: "rgba(255,255,255,0.9)", fontSize: 16, margin: 0, lineHeight: 1.6 }}>
-                  Revisá que el mensaje esté completo y apretá <strong>Enviar</strong>. Silvina te manda el capítulo enseguida.
-                </p>
-              </div>
-            ) : (
-              <>
-                <h3 style={{ fontFamily: "var(--font-display), 'Archivo Black', sans-serif", fontWeight: 700, fontSize: 24, color: "white", margin: 0, lineHeight: 1.2 }}>
-                  Recibí el primer capítulo gratis
-                </h3>
-                <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", color: "rgba(255,255,255,0.9)", fontSize: 15, margin: 0, lineHeight: 1.6 }}>
-                  Dejame tu email y te lo mando para que puedas conocer la voz del libro sin compromiso.
-                </p>
-                <form onSubmit={handleCap1Submit} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                  {(["Nombre", "Email", "WhatsApp"] as const).map(f => (
-                    <div key={f}>
-                      <label style={{ ...labelStyle, color: "rgba(255,255,255,0.8)" }}>{f}{f === "WhatsApp" ? " (opcional)" : " *"}</label>
-                      <input
-                        type={f === "Email" ? "email" : f === "WhatsApp" ? "tel" : "text"}
-                        required={f !== "WhatsApp"}
-                        placeholder={f === "Email" ? "hola@email.com" : f === "WhatsApp" ? "+54 9 11 0000-0000" : `Tu ${f.toLowerCase()}`}
-                        value={cap1Form[f.toLowerCase() as keyof typeof cap1Form]}
-                        onChange={e => setCap1Form({ ...cap1Form, [f.toLowerCase()]: e.target.value })}
-                        style={{ width: "100%", padding: "11px 14px", borderRadius: 10, border: "2px solid var(--ink)", background: "rgba(255,255,255,0.15)", color: "white", fontFamily: "var(--font-body), Inter, sans-serif", fontSize: 15, outline: "none" }}
-                      />
-                    </div>
-                  ))}
-                  <button type="submit" className="btn-dark" style={{ marginTop: 4, width: "100%" }}>ENVIAR EL PRIMER CAPÍTULO</button>
-                </form>
-              </>
-            )}
+            <>
+              <h3 style={{ fontFamily: "var(--font-display), 'Archivo Black', sans-serif", fontWeight: 700, fontSize: 24, color: "white", margin: 0, lineHeight: 1.2 }}>
+                Recibí el primer capítulo gratis
+              </h3>
+              <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", color: "rgba(255,255,255,0.9)", fontSize: 15, margin: 0, lineHeight: 1.6 }}>
+                Dejame tu email y te lo mando para que puedas conocer la voz del libro sin compromiso.
+              </p>
+              <form onSubmit={handleCap1Submit} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                <div>
+                  <label style={{ ...labelStyle, color: "rgba(255,255,255,0.8)" }}>Nombre *</label>
+                  <input type="text" placeholder="Tu nombre"
+                    value={cap1Form.nombre}
+                    onChange={e => { setCap1Form({ ...cap1Form, nombre: e.target.value }); setCap1Errors({}); }}
+                    style={{ width: "100%", padding: "11px 14px", borderRadius: 10, border: `2px solid ${cap1Errors.nombre ? "var(--yellow)" : "var(--ink)"}`, background: "rgba(255,255,255,0.15)", color: "white", fontFamily: "var(--font-body), Inter, sans-serif", fontSize: 15, outline: "none" }}
+                  />
+                  {cap1Errors.nombre && <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", fontSize: 12, color: "var(--yellow)", margin: "4px 0 0" }}>{cap1Errors.nombre}</p>}
+                </div>
+                <div>
+                  <label style={{ ...labelStyle, color: "rgba(255,255,255,0.8)" }}>Email *</label>
+                  <input type="email" placeholder="hola@email.com"
+                    value={cap1Form.email}
+                    onChange={e => { setCap1Form({ ...cap1Form, email: e.target.value }); setCap1Errors({}); }}
+                    style={{ width: "100%", padding: "11px 14px", borderRadius: 10, border: `2px solid ${cap1Errors.email ? "var(--yellow)" : "var(--ink)"}`, background: "rgba(255,255,255,0.15)", color: "white", fontFamily: "var(--font-body), Inter, sans-serif", fontSize: 15, outline: "none" }}
+                  />
+                  {cap1Errors.email && <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", fontSize: 12, color: "var(--yellow)", margin: "4px 0 0" }}>{cap1Errors.email}</p>}
+                </div>
+                <div>
+                  <label style={{ ...labelStyle, color: "rgba(255,255,255,0.8)" }}>WhatsApp (opcional)</label>
+                  <input type="tel" placeholder="+54 9 11 0000-0000"
+                    value={cap1Form.whatsapp}
+                    onChange={e => setCap1Form({ ...cap1Form, whatsapp: e.target.value })}
+                    style={{ width: "100%", padding: "11px 14px", borderRadius: 10, border: "2px solid var(--ink)", background: "rgba(255,255,255,0.15)", color: "white", fontFamily: "var(--font-body), Inter, sans-serif", fontSize: 15, outline: "none" }}
+                  />
+                </div>
+                <button type="submit" className="btn-dark" style={{ marginTop: 4, width: "100%", opacity: cap1Loading ? 0.7 : 1, cursor: cap1Loading ? "wait" : "pointer" }} disabled={cap1Loading}>
+                  {cap1Loading ? "ENVIANDO…" : "RECIBÍ EL PRIMER CAPÍTULO GRATIS"}
+                </button>
+              </form>
+            </>
           </div>
         </div>
       </section>
@@ -349,46 +380,55 @@ export default function LeerPage() {
 
           {/* Right — form */}
           <div style={{ background: "white", border: "2px solid var(--ink)", borderRadius: "var(--radius-card)", padding: "36px", display: "flex", flexDirection: "column", gap: 16, boxShadow: "6px 6px 0 var(--ink)" }}>
-            {hijosSent ? (
-              <div style={{ textAlign: "center", padding: "24px 0", display: "flex", flexDirection: "column", gap: 16 }}>
-                <p style={{ fontFamily: "var(--font-script), 'Caveat', cursive", fontStyle: "italic", fontSize: 36, color: "var(--green-dark)", margin: 0 }}>¡WhatsApp abierto!</p>
-                <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", color: "var(--body)", fontSize: 16, margin: 0, lineHeight: 1.6 }}>
-                  Revisá que el mensaje esté completo y apretá <strong>Enviar</strong>. Silvina te escribe pronto con toda la info.
-                </p>
-              </div>
-            ) : (
-              <>
-                <h3 style={{ fontFamily: "var(--font-display), 'Archivo Black', sans-serif", fontWeight: 700, fontSize: 22, color: "var(--ink)", margin: 0, lineHeight: 1.2 }}>
-                  Quiero sumarme a Hijos Golondrina
-                </h3>
-                <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", color: "var(--body)", fontSize: 14, margin: 0, lineHeight: 1.6 }}>
-                  Dejame tus datos y te mando la información por WhatsApp.
-                </p>
-                <form onSubmit={handleHijosSubmit} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                  {[
-                    { key: "nombre", label: "Nombre", type: "text", placeholder: "Tu nombre", required: true },
-                    { key: "email", label: "Email", type: "email", placeholder: "hola@email.com", required: true },
-                    { key: "whatsapp", label: "WhatsApp", type: "tel", placeholder: "+54 9 11 0000-0000", required: true },
-                    { key: "ciudad", label: "Ciudad o país", type: "text", placeholder: "Buenos Aires, España...", required: false },
-                  ].map(f => (
-                    <div key={f.key}>
-                      <label style={{ ...labelStyle, color: "var(--muted-ink)" }}>{f.label}{f.required ? " *" : " (opcional)"}</label>
-                      <input type={f.type} required={f.required} placeholder={f.placeholder}
-                        value={hijosForm[f.key as keyof typeof hijosForm]}
-                        onChange={e => setHijosForm({ ...hijosForm, [f.key]: e.target.value })}
-                        style={whiteInputStyle} />
-                    </div>
-                  ))}
-                  <div>
-                    <label style={{ ...labelStyle, color: "var(--muted-ink)" }}>¿Qué te acerca a este espacio?</label>
-                    <textarea rows={3} placeholder="Contame lo que quieras..." value={hijosForm.mensaje}
-                      onChange={e => setHijosForm({ ...hijosForm, mensaje: e.target.value })}
-                      style={{ ...whiteInputStyle, resize: "vertical" }} />
-                  </div>
-                  <button type="submit" className="btn-primary" style={{ width: "100%", marginTop: 4 }}>QUIERO SUMARME</button>
-                </form>
-              </>
-            )}
+            <>
+              <h3 style={{ fontFamily: "var(--font-display), 'Archivo Black', sans-serif", fontWeight: 700, fontSize: 22, color: "var(--ink)", margin: 0, lineHeight: 1.2 }}>
+                Quiero sumarme a Hijos Golondrina
+              </h3>
+              <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", color: "var(--body)", fontSize: 14, margin: 0, lineHeight: 1.6 }}>
+                Dejame tus datos y te mando la información por WhatsApp.
+              </p>
+              <form onSubmit={handleHijosSubmit} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                <div>
+                  <label style={{ ...labelStyle, color: "var(--muted-ink)" }}>Nombre *</label>
+                  <input type="text" placeholder="Tu nombre"
+                    value={hijosForm.nombre}
+                    onChange={e => { setHijosForm({ ...hijosForm, nombre: e.target.value }); setHijosErrors({}); }}
+                    style={{ ...whiteInputStyle, borderColor: hijosErrors.nombre ? "var(--orange-dark)" : "var(--ink)" }} />
+                  {hijosErrors.nombre && <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", fontSize: 12, color: "var(--orange-dark)", margin: "4px 0 0" }}>{hijosErrors.nombre}</p>}
+                </div>
+                <div>
+                  <label style={{ ...labelStyle, color: "var(--muted-ink)" }}>Email *</label>
+                  <input type="email" placeholder="hola@email.com"
+                    value={hijosForm.email}
+                    onChange={e => { setHijosForm({ ...hijosForm, email: e.target.value }); setHijosErrors({}); }}
+                    style={{ ...whiteInputStyle, borderColor: hijosErrors.email ? "var(--orange-dark)" : "var(--ink)" }} />
+                  {hijosErrors.email && <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", fontSize: 12, color: "var(--orange-dark)", margin: "4px 0 0" }}>{hijosErrors.email}</p>}
+                </div>
+                <div>
+                  <label style={{ ...labelStyle, color: "var(--muted-ink)" }}>WhatsApp (opcional)</label>
+                  <input type="tel" placeholder="+54 9 11 0000-0000"
+                    value={hijosForm.whatsapp}
+                    onChange={e => setHijosForm({ ...hijosForm, whatsapp: e.target.value })}
+                    style={whiteInputStyle} />
+                </div>
+                <div>
+                  <label style={{ ...labelStyle, color: "var(--muted-ink)" }}>Ciudad o país (opcional)</label>
+                  <input type="text" placeholder="Buenos Aires, España..."
+                    value={hijosForm.ciudad}
+                    onChange={e => setHijosForm({ ...hijosForm, ciudad: e.target.value })}
+                    style={whiteInputStyle} />
+                </div>
+                <div>
+                  <label style={{ ...labelStyle, color: "var(--muted-ink)" }}>¿Qué te acerca a este espacio?</label>
+                  <textarea rows={3} placeholder="Contame lo que quieras..." value={hijosForm.mensaje}
+                    onChange={e => setHijosForm({ ...hijosForm, mensaje: e.target.value })}
+                    style={{ ...whiteInputStyle, resize: "vertical" }} />
+                </div>
+                <button type="submit" className="btn-primary" style={{ width: "100%", marginTop: 4, opacity: hijosLoading ? 0.7 : 1, cursor: hijosLoading ? "wait" : "pointer" }} disabled={hijosLoading}>
+                  {hijosLoading ? "ENVIANDO…" : "QUIERO SUMARME"}
+                </button>
+              </form>
+            </>
           </div>
         </div>
       </section>

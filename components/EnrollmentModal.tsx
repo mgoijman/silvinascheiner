@@ -1,6 +1,9 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
+import { buildLead, captureLead } from "@/lib/lead";
+import { Analytics } from "@/lib/analytics";
 
 interface Props {
   /** Name of the workshop — used in the WA message header */
@@ -43,12 +46,14 @@ export default function EnrollmentModal({
   buttonClassName = "btn-primary",
   buttonStyle,
 }: Props) {
+  const router  = useRouter();
   const [open,     setOpen]     = useState(false);
   const [nombre,   setNombre]   = useState("");
   const [email,    setEmail]    = useState("");
   const [whatsapp, setWhatsapp] = useState("");
   const [contame,  setContame]  = useState("");
-  const [sent,     setSent]     = useState(false);
+  const [loading,  setLoading]  = useState(false);
+  const [errors,   setErrors]   = useState<{ nombre?: string; email?: string }>({});
   const dialogRef = useRef<HTMLDivElement>(null);
 
   // Close on Escape
@@ -65,26 +70,44 @@ export default function EnrollmentModal({
 
   function handleOpen() {
     setOpen(true);
-    setSent(false);
+    setErrors({});
   }
 
   function handleClose() {
     setOpen(false);
-    // Reset form after close animation
     setTimeout(() => {
-      setNombre(""); setEmail(""); setWhatsapp(""); setContame(""); setSent(false);
+      setNombre(""); setEmail(""); setWhatsapp(""); setContame("");
+      setLoading(false); setErrors({});
     }, 200);
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    // 1. Capture lead to Google Sheets via server-side API route (no CORS issues)
-    fetch("/api/capture", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ fuente: tallerName, nombre, email, whatsapp, contame }),
-    }).catch(() => {});
+    const errs: { nombre?: string; email?: string } = {};
+    if (!nombre.trim()) errs.nombre = "El nombre es requerido";
+    if (!email.trim())  errs.email  = "El email es requerido";
+    if (Object.keys(errs).length) { setErrors(errs); return; }
+
+    setLoading(true);
+
+    // Determine interest/thank-you page by taller name
+    const isCoaching = tallerName.toLowerCase().includes("coaching");
+    const interest   = isCoaching ? "coaching" : "workshop";
+
+    // 1. Capture normalized lead
+    const payload = buildLead({
+      name:               nombre,
+      email,
+      whatsapp:           whatsapp || undefined,
+      interest,
+      product_or_service: tallerName,
+      form_type:          "enrollment",
+      message:            contame || undefined,
+    });
+    await captureLead(payload);
+    Analytics.generateLead({ form_type: "enrollment", interest });
+    Analytics.workshopInterest({ workshop: tallerName });
 
     // 2. Open WhatsApp with pre-filled tagged message
     const lines: string[] = [
@@ -97,10 +120,13 @@ export default function EnrollmentModal({
       ...(whatsapp ? [`WhatsApp: ${whatsapp}`] : []),
       ...(contame  ? [`Comentario: ${contame}`] : []),
     ];
+    window.open(
+      `https://wa.me/5491159264582?text=${encodeURIComponent(lines.join("\n"))}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
 
-    const url = `https://wa.me/5491159264582?text=${encodeURIComponent(lines.join("\n"))}`;
-    window.open(url, "_blank", "noopener,noreferrer");
-    setSent(true);
+    router.push(isCoaching ? "/gracias/coaching" : "/gracias/taller");
   }
 
   return (
@@ -212,35 +238,7 @@ export default function EnrollmentModal({
               </p>
             </div>
 
-            {sent ? (
-              /* Success state */
-              <div style={{
-                background: "var(--green-soft)",
-                border: "2px solid var(--ink)",
-                borderRadius: 12,
-                padding: "24px",
-                textAlign: "center",
-                display: "flex",
-                flexDirection: "column",
-                gap: 12,
-              }}>
-                <span style={{ fontSize: 32 }}>✓</span>
-                <p style={{
-                  fontFamily: "var(--font-body), Inter, sans-serif",
-                  fontSize: 15,
-                  color: "var(--ink)",
-                  margin: 0,
-                  lineHeight: 1.6,
-                }}>
-                  <strong>¡WhatsApp abierto!</strong> Revisá que el mensaje esté completo y apretá Enviar. Silvina te responde pronto.
-                </p>
-                <button type="button" className="btn-dark" onClick={handleClose}>
-                  CERRAR
-                </button>
-              </div>
-            ) : (
-              /* Form */
-              <form onSubmit={handleSubmit} noValidate style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+            <form onSubmit={handleSubmit} noValidate style={{ display: "flex", flexDirection: "column", gap: 14 }}>
                 <div>
                   <label style={labelStyle} htmlFor="enroll-nombre">Nombre *</label>
                   <input
@@ -249,9 +247,10 @@ export default function EnrollmentModal({
                     required
                     placeholder="Tu nombre"
                     value={nombre}
-                    onChange={e => setNombre(e.target.value)}
-                    style={inputStyle}
+                    onChange={e => { setNombre(e.target.value); setErrors(er => ({ ...er, nombre: "" })); }}
+                    style={{ ...inputStyle, borderColor: errors.nombre ? "var(--orange-dark)" : "var(--ink)" }}
                   />
+                  {errors.nombre && <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", fontSize: 12, color: "var(--orange-dark)", margin: "4px 0 0" }}>{errors.nombre}</p>}
                 </div>
 
                 <div>
@@ -262,9 +261,10 @@ export default function EnrollmentModal({
                     required
                     placeholder="hola@email.com"
                     value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    style={inputStyle}
+                    onChange={e => { setEmail(e.target.value); setErrors(er => ({ ...er, email: "" })); }}
+                    style={{ ...inputStyle, borderColor: errors.email ? "var(--orange-dark)" : "var(--ink)" }}
                   />
+                  {errors.email && <p style={{ fontFamily: "var(--font-body), Inter, sans-serif", fontSize: 12, color: "var(--orange-dark)", margin: "4px 0 0" }}>{errors.email}</p>}
                 </div>
 
                 <div>
@@ -294,10 +294,10 @@ export default function EnrollmentModal({
                 <button
                   type="submit"
                   className="btn-primary"
-                  style={{ width: "100%", marginTop: 4 }}
-                  disabled={!nombre || !email}
+                  style={{ width: "100%", marginTop: 4, opacity: loading ? 0.7 : 1, cursor: loading ? "wait" : "pointer" }}
+                  disabled={loading}
                 >
-                  ENVIAR POR WHATSAPP
+                  {loading ? "ENVIANDO…" : "ENVIAR POR WHATSAPP"}
                 </button>
 
                 <p style={{
@@ -311,7 +311,6 @@ export default function EnrollmentModal({
                   Se va a abrir WhatsApp con tu mensaje listo para enviar.
                 </p>
               </form>
-            )}
           </div>
         </div>
       )}

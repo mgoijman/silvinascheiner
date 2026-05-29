@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppFAB from "@/components/WhatsAppFAB";
+import AnalyticsProvider from "@/components/AnalyticsProvider";
 
 const archivoBlack = Archivo({
   weight: ["700", "800", "900"],
@@ -50,6 +51,7 @@ export default function RootLayout({
       className={`${archivoBlack.variable} ${inter.variable} ${caveat.variable}`}
     >
       <body style={{ background: "var(--cream)", color: "var(--body)" }}>
+        <AnalyticsProvider />
         <Navbar />
         <main>{children}</main>
         <Footer />
