@@ -134,7 +134,7 @@ export default function SobrePage() {
             <div style={{ position: "relative", width: "100%", maxWidth: 420 }}>
               <HeroImageFrame>
                 <Image
-                  src="/images/silvina/silvina-hero-sobre.png"
+                  src="/images/silvina/conocer a silvina hero.png"
                   alt="Silvina Scheiner, escritora y docente"
                   fill
                   style={{ objectFit: "cover", objectPosition: "center top" }}

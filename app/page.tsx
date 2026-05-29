@@ -285,23 +285,27 @@ export default function HomePage() {
               </p>
               <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 10 }}>
                 {[
-                  "Descargar el primer capítulo gratis",
-                  "Comprar el libro físico o digital",
-                  "Sumarte a Hijos Golondrina si el tema te toca de cerca",
-                ].map((item) => (
-                  <li
-                    key={item}
-                    style={{
-                      fontFamily: "var(--font-body), Inter, sans-serif",
-                      fontSize: 15,
-                      color: "white",
-                      display: "flex",
-                      alignItems: "flex-start",
-                      gap: 8,
-                    }}
-                  >
-                    <span style={{ flexShrink: 0, marginTop: 2 }}>→</span>
-                    {item}
+                  { label: "Descargar el primer capítulo gratis", href: "/leer" },
+                  { label: "Comprar el libro físico o digital", href: "/comprar" },
+                  { label: "Sumarte a Hijos Golondrina si el tema te toca de cerca", href: "/leer" },
+                ].map(({ label, href }) => (
+                  <li key={label}>
+                    <Link
+                      href={href}
+                      style={{
+                        fontFamily: "var(--font-body), Inter, sans-serif",
+                        fontSize: 15,
+                        color: "white",
+                        display: "flex",
+                        alignItems: "flex-start",
+                        gap: 8,
+                        textDecoration: "none",
+                        fontWeight: 600,
+                      }}
+                    >
+                      <span style={{ flexShrink: 0, marginTop: 2 }}>→</span>
+                      {label}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -349,23 +353,27 @@ export default function HomePage() {
               </p>
               <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 10 }}>
                 {[
-                  "Empezar con una comunidad gratuita",
-                  "Hacer 21 consignas para escribir hoy",
-                  "Sumarte a grupos o trabajar 1:1 con Silvina",
-                ].map((item) => (
-                  <li
-                    key={item}
-                    style={{
-                      fontFamily: "var(--font-body), Inter, sans-serif",
-                      fontSize: 15,
-                      color: "var(--ink)",
-                      display: "flex",
-                      alignItems: "flex-start",
-                      gap: 8,
-                    }}
-                  >
-                    <span style={{ flexShrink: 0, marginTop: 2, color: "var(--green-dark)" }}>→</span>
-                    {item}
+                  { label: "Comunidad de Escritura Creativa gratis", href: "/aprender-a-escribir/comunidad" },
+                  { label: "Grupo de Creatividad presencial y online", href: "/aprender-a-escribir/grupo-creatividad" },
+                  { label: "Grupo de Lectura presencial y online", href: "/aprender-a-escribir/grupo-lectura" },
+                ].map(({ label, href }) => (
+                  <li key={label}>
+                    <Link
+                      href={href}
+                      style={{
+                        fontFamily: "var(--font-body), Inter, sans-serif",
+                        fontSize: 15,
+                        color: "var(--ink)",
+                        display: "flex",
+                        alignItems: "flex-start",
+                        gap: 8,
+                        textDecoration: "none",
+                        fontWeight: 600,
+                      }}
+                    >
+                      <span style={{ flexShrink: 0, marginTop: 2, color: "var(--green-dark)" }}>→</span>
+                      {label}
+                    </Link>
                   </li>
                 ))}
               </ul>

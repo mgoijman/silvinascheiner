@@ -234,23 +234,31 @@ export default function AprenderPage() {
                 Para escribir con otras personas, recibir consignas, participar de encuentros y sostener una práctica compartida.
               </p>
 
-              <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 10 }}>
-                {["Comunidad de Escritura Creativa gratis", "Grupo de Creatividad presencial y online", "Grupo de Lectura presencial y online"].map(item => (
-                  <li key={item} style={{
-                    fontFamily: "var(--font-body), Inter, sans-serif",
-                    fontSize: 15,
-                    color: "var(--ink)",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 10,
-                  }}>
-                    <span style={{ color: "var(--green-dark)" }}>→</span> {item}
+              <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 12 }}>
+                {[
+                  { label: "Comunidad de Escritura Creativa gratis", href: "/aprender-a-escribir/comunidad" },
+                  { label: "Grupo de Creatividad presencial y online", href: "/aprender-a-escribir/grupo-creatividad" },
+                  { label: "Grupo de Lectura presencial y online", href: "/aprender-a-escribir/grupo-lectura" },
+                ].map(({ label, href }) => (
+                  <li key={label}>
+                    <Link href={href} style={{
+                      fontFamily: "var(--font-body), Inter, sans-serif",
+                      fontSize: 15,
+                      color: "var(--ink)",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 10,
+                      textDecoration: "none",
+                      fontWeight: 600,
+                    }}>
+                      <span style={{ color: "var(--green-dark)", flexShrink: 0 }}>→</span>{label}
+                    </Link>
                   </li>
                 ))}
               </ul>
 
               <div style={{ marginTop: "auto" }}>
-                <a href="https://wa.me/5491159264582?text=Hola%20Silvina%2C%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20grupos%20de%20escritura" target="_blank" rel="noopener noreferrer" className="btn-dark" style={{ fontSize: 11 }}>VER OPCIONES</a>
+                <Link href="/aprender-a-escribir/comunidad" className="btn-dark" style={{ fontSize: 11 }}>VER OPCIONES GRUPALES</Link>
               </div>
             </article>
           </div>

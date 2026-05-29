@@ -239,34 +239,38 @@ export default function EmpezarPage() {
 
             <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 10 }}>
               {[
-                "Comunidad gratuita por WhatsApp",
-                "21 consignas por email",
-                "Taller grupal o 1:1 con Silvina",
-              ].map((item) => (
-                <li
-                  key={item}
-                  style={{
-                    fontFamily: "var(--font-body), Inter, sans-serif",
-                    fontSize: 15,
-                    color: "var(--ink)",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 10,
-                  }}
-                >
-                  <span style={{
-                    width: 22,
-                    height: 22,
-                    borderRadius: "50%",
-                    border: "2px solid var(--green-dark)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: 11,
-                    color: "var(--green-dark)",
-                    flexShrink: 0,
-                  }}>→</span>
-                  {item}
+                { label: "Comunidad de Escritura Creativa gratis", href: "/aprender-a-escribir/comunidad" },
+                { label: "Grupo de Creatividad presencial y online", href: "/aprender-a-escribir/grupo-creatividad" },
+                { label: "Grupo de Lectura presencial y online", href: "/aprender-a-escribir/grupo-lectura" },
+              ].map(({ label, href }) => (
+                <li key={label}>
+                  <Link
+                    href={href}
+                    style={{
+                      fontFamily: "var(--font-body), Inter, sans-serif",
+                      fontSize: 15,
+                      color: "var(--ink)",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 10,
+                      textDecoration: "none",
+                      fontWeight: 600,
+                    }}
+                  >
+                    <span style={{
+                      width: 22,
+                      height: 22,
+                      borderRadius: "50%",
+                      border: "2px solid var(--green-dark)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: 11,
+                      color: "var(--green-dark)",
+                      flexShrink: 0,
+                    }}>→</span>
+                    {label}
+                  </Link>
                 </li>
               ))}
             </ul>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import SectionLabel from "@/components/SectionLabel";
 import StickerBlob from "@/components/StickerBlob";
 import WaveDivider from "@/components/WaveDivider";
@@ -6,11 +7,20 @@ import EnrollmentModal from "@/components/EnrollmentModal";
 
 export const metadata: Metadata = {
   title: "Grupo de Creatividad · Silvina Scheiner",
-  description: "Escribí acompañada/o en un grupo pequeño con feedback, lectura compartida y ejercicios guiados por Silvina.",
+  description: "Escribí acompañada/o en un grupo pequeño con feedback real y ejercicios guiados por Silvina. Presencial y online.",
 };
 
 const display = "var(--font-display), 'Archivo Black', sans-serif";
 const body    = "var(--font-body), Inter, sans-serif";
+
+const caption: React.CSSProperties = {
+  fontFamily: body,
+  fontSize: 13,
+  color: "var(--muted-ink)",
+  margin: "10px 0 0",
+  fontStyle: "italic",
+  letterSpacing: "0.2px",
+};
 
 export default function GrupoCreatividadPage() {
   return (
@@ -30,20 +40,31 @@ export default function GrupoCreatividadPage() {
           </h1>
           <WaveDivider />
           <p style={{ fontFamily: body, fontSize: 19, lineHeight: 1.7, color: "var(--body)", margin: 0, maxWidth: 560 }}>
-            Un grupo pequeño de escritura creativa con feedback real, lectura compartida y ejercicios guiados por Silvina. Para escritores que quieren avanzar con la energía del grupo.
+            Un grupo pequeño de escritura creativa con feedback real y ejercicios guiados por Silvina. Para personas que quieren avanzar con la energía y el sostén de un grupo.
           </p>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
             <EnrollmentModal tallerName="Grupo de Creatividad" buttonLabel="CONSULTAR DISPONIBILIDAD" />
-            <a href="#que-pasa" className="btn-secondary">¿QUÉ PASA EN CADA ENCUENTRO?</a>
+            <a href="#que-pasa" className="btn-secondary">QUE PASA EN CADA ENCUENTRO</a>
           </div>
         </div>
       </section>
 
-      {/* ── ¿PARA QUIÉN ES? ───────────────────────────────────── */}
-      <section style={{ background: "var(--cream)", borderBottom: "2px solid var(--ink)", padding: "72px 24px" }}>
-        <div style={{ maxWidth: 900, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48 }} className="two-col">
+      {/* ── FOTO 1 — after hero ────────────────────────────────── */}
+      <section style={{ background: "var(--cream)", borderBottom: "2px solid var(--ink)", padding: "56px 24px" }}>
+        <div style={{ maxWidth: 900, margin: "0 auto", display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: 48, alignItems: "center" }} className="two-col">
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <div style={{ position: "relative", aspectRatio: "4/3", borderRadius: "var(--radius-card)", overflow: "hidden", border: "2px solid var(--ink)", boxShadow: "6px 6px 0 var(--ink)" }}>
+              <Image
+                src="/images/silvina/grupo 1.png"
+                alt="Grupo de Creatividad Martínez con Silvina Scheiner"
+                fill
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+            <p style={caption}>Grupo de Creatividad Martínez</p>
+          </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-            <SectionLabel text="¿Para quién es?" color="yellow" />
+            <SectionLabel text="Para quien es" color="yellow" />
             <h2 style={{ fontFamily: display, fontWeight: 400, fontSize: "clamp(24px, 3vw, 36px)", color: "var(--ink)", margin: 0, lineHeight: 1.2 }}>
               Para escritores que quieren crecer{" "}
               <span style={{ fontFamily: "var(--font-script), 'Caveat', cursive", fontStyle: "italic", color: "var(--orange-dark)" }}>juntos.</span>
@@ -52,7 +73,7 @@ export default function GrupoCreatividadPage() {
               {[
                 "Ya escribís pero querés feedback real sobre tu texto",
                 "Te cuesta mantener la constancia sola/o",
-                "Querés aprender de los textos de otros",
+                "Querés aprender escuchando los textos de otros",
                 "Buscás un espacio de intercambio genuino",
                 "Tenés un proyecto en mente y querés avanzar",
               ].map((item) => (
@@ -63,46 +84,67 @@ export default function GrupoCreatividadPage() {
               ))}
             </ul>
           </div>
+        </div>
+      </section>
 
+      {/* ── QUE INCLUYE ───────────────────────────────────────── */}
+      <section style={{ background: "var(--offwhite)", borderBottom: "2px solid var(--ink)", padding: "72px 24px" }}>
+        <div style={{ maxWidth: 900, margin: "0 auto", display: "grid", gridTemplateColumns: "0.9fr 1.1fr", gap: 48, alignItems: "center" }} className="two-col">
           <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-            <SectionLabel text="¿Qué incluye?" color="orange" />
+            <SectionLabel text="Que incluye" color="orange" />
+            <h2 style={{ fontFamily: display, fontWeight: 400, fontSize: "clamp(24px, 3vw, 36px)", color: "var(--ink)", margin: 0, lineHeight: 1.2 }}>
+              Cada encuentro es{" "}
+              <span style={{ fontFamily: "var(--font-script), 'Caveat', cursive", fontStyle: "italic", color: "var(--orange-dark)" }}>distinto.</span>
+            </h2>
             <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 14 }}>
               {[
-                { icon: "✍️", text: "Ejercicios de escritura guiados en cada encuentro" },
-                { icon: "🔊", text: "Lectura en voz alta y retroalimentación del grupo" },
-                { icon: "💡", text: "Técnicas narrativas y recursos específicos" },
-                { icon: "👁️", text: "Feedback constructivo de Silvina y del grupo" },
-                { icon: "📝", text: "Consignas para trabajar entre encuentros" },
-              ].map(({ icon, text }) => (
+                "Ejercicios de escritura guiados en cada encuentro",
+                "Lectura de los textos propios y retroalimentación grupal",
+                "Técnicas narrativas y recursos específicos",
+                "Feedback constructivo de Silvina y del grupo",
+                "Consignas para trabajar entre encuentros",
+              ].map((text) => (
                 <li key={text} style={{ fontFamily: body, fontSize: 16, color: "var(--body)", display: "flex", gap: 14, alignItems: "flex-start" }}>
-                  <span style={{ fontSize: 22, flexShrink: 0 }}>{icon}</span>
+                  <span style={{ color: "var(--orange-dark)", fontWeight: 700, flexShrink: 0, marginTop: 2 }}>→</span>
                   {text}
                 </li>
               ))}
             </ul>
           </div>
+
+          {/* ── FOTO 2 — inline with "que incluye" ── */}
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <div style={{ position: "relative", aspectRatio: "4/3", borderRadius: "var(--radius-card)", overflow: "hidden", border: "2px solid var(--ink)", boxShadow: "6px 6px 0 var(--ink)" }}>
+              <Image
+                src="/images/silvina/grupo 2.png"
+                alt="Grupo de Creatividad presencial con Silvina"
+                fill
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+            <p style={caption}>Grupo de Creatividad Martínez</p>
+          </div>
         </div>
       </section>
 
       {/* ── MODALIDAD ─────────────────────────────────────────── */}
-      <section id="que-pasa" style={{ background: "var(--offwhite)", borderBottom: "2px solid var(--ink)", padding: "72px 24px" }}>
+      <section id="que-pasa" style={{ background: "var(--cream)", borderBottom: "2px solid var(--ink)", padding: "72px 24px" }}>
         <div style={{ maxWidth: 800, margin: "0 auto", display: "flex", flexDirection: "column", gap: 40 }}>
           <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
             <SectionLabel text="Modalidad" color="orange" />
             <h2 style={{ fontFamily: display, fontWeight: 400, fontSize: "clamp(26px, 3.5vw, 40px)", color: "var(--ink)", margin: 0, lineHeight: 1.15 }}>
-              Online y/o presencial.{" "}
+              Online y presencial.{" "}
               <span style={{ fontFamily: "var(--font-script), 'Caveat', cursive", fontStyle: "italic", color: "var(--orange-dark)" }}>Grupos pequeños.</span>
             </h2>
           </div>
 
           <div className="formats-grid">
             {[
-              { icon: "🌐", title: "Modalidad", body: "Online (Zoom) y/o presencial en Buenos Aires. A confirmar según el grupo.", color: "var(--green-soft)" },
-              { icon: "📅", title: "Duración", body: "A confirmar. Encuentros de 1,5 a 2 horas, frecuencia semanal.", color: "var(--orange)" },
-              { icon: "💰", title: "Precio", body: "Consultá disponibilidad. Silvina te manda toda la info por WhatsApp.", color: "var(--yellow)" },
-            ].map(({ icon, title, body: cardBody, color }) => (
+              { title: "Modalidad", body: "Online (Zoom) y/o presencial en Buenos Aires. Se define según el grupo que se forme.", color: "var(--green-soft)" },
+              { title: "Duración", body: "Encuentros de 1,5 a 2 horas, con frecuencia semanal.", color: "var(--orange)" },
+              { title: "Precio", body: "Consultá disponibilidad. Silvina te manda toda la info por WhatsApp.", color: "var(--yellow)" },
+            ].map(({ title, body: cardBody, color }) => (
               <div key={title} style={{ background: color, border: "2px solid var(--ink)", borderRadius: "var(--radius-card)", padding: "28px 24px", display: "flex", flexDirection: "column", gap: 10, boxShadow: "4px 4px 0 var(--ink)" }}>
-                <span style={{ fontSize: 32 }}>{icon}</span>
                 <h3 style={{ fontFamily: display, fontWeight: 700, fontSize: 18, color: "var(--ink)", margin: 0 }}>{title}</h3>
                 <p style={{ fontFamily: body, fontSize: 15, color: "var(--body)", margin: 0, lineHeight: 1.6 }}>{cardBody}</p>
               </div>
@@ -112,12 +154,12 @@ export default function GrupoCreatividadPage() {
       </section>
 
       {/* ── FAQ ───────────────────────────────────────────────── */}
-      <section style={{ background: "var(--cream)", borderBottom: "2px solid var(--ink)", padding: "64px 24px" }}>
+      <section style={{ background: "var(--offwhite)", borderBottom: "2px solid var(--ink)", padding: "64px 24px" }}>
         <div style={{ maxWidth: 700, margin: "0 auto", display: "flex", flexDirection: "column", gap: 32 }}>
           <SectionLabel text="Preguntas frecuentes" color="orange" />
           {[
-            { q: "¿Cuántas personas hay en el grupo?", a: "Los grupos son pequeños (6 a 8 personas máximo) para que haya lugar para cada texto." },
-            { q: "¿Necesito traer algo ya escrito?", a: "No es necesario. Los ejercicios se hacen en el encuentro. Si tenés un proyecto, también podemos trabajar con eso." },
+            { q: "¿Cuántas personas hay en el grupo?", a: "Los grupos son pequeños, de 6 a 8 personas como máximo, para que haya lugar para cada texto." },
+            { q: "¿Necesito traer algo ya escrito?", a: "No es necesario. Los ejercicios se hacen en el encuentro. Si tenés un proyecto propio, también podemos trabajar con eso." },
             { q: "¿Cuántos encuentros son?", a: "A confirmar. Consultá disponibilidad y te mandamos toda la información." },
             { q: "¿El grupo es online o presencial?", a: "Puede ser online (Zoom) o presencial en Buenos Aires, según la disponibilidad del grupo que se forme." },
           ].map(({ q, a }) => (
@@ -126,6 +168,21 @@ export default function GrupoCreatividadPage() {
               <p style={{ fontFamily: body, fontSize: 16, color: "var(--body)", margin: 0, lineHeight: 1.65 }}>{a}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* ── FOTO 3 — before CTA ───────────────────────────────── */}
+      <section style={{ background: "var(--cream)", borderBottom: "2px solid var(--ink)", padding: "56px 24px" }}>
+        <div style={{ maxWidth: 720, margin: "0 auto", display: "flex", flexDirection: "column" }}>
+          <div style={{ position: "relative", aspectRatio: "16/7", borderRadius: "var(--radius-card)", overflow: "hidden", border: "2px solid var(--ink)", boxShadow: "6px 6px 0 var(--ink)" }}>
+            <Image
+              src="/images/silvina/grupo 3.png"
+              alt="Grupo de Creatividad online con Silvina Scheiner"
+              fill
+              style={{ objectFit: "cover", objectPosition: "center" }}
+            />
+          </div>
+          <p style={caption}>Grupo de Creatividad online</p>
         </div>
       </section>
 
