@@ -80,16 +80,7 @@ export default function LeerPage() {
     await captureLead(payload);
     Analytics.generateLead({ form_type: "cap1", interest: "first_chapter" });
 
-    const lines = [
-      "🏷️ [CAP. 1 GRATIS]",
-      "",
-      "Hola Silvina, quiero recibir el primer capítulo de Distancias del corazón.",
-      "",
-      `Nombre: ${cap1Form.nombre}`,
-      `Email: ${cap1Form.email}`,
-      ...(cap1Form.whatsapp ? [`WhatsApp: ${cap1Form.whatsapp}`] : []),
-    ];
-    window.open(`https://wa.me/5491159264582?text=${encodeURIComponent(lines.join("\n"))}`, "_blank", "noopener,noreferrer");
+    // No WhatsApp — files are delivered directly on the thank-you page
     router.push("/gracias/capitulo-1");
   }
 
@@ -234,7 +225,7 @@ export default function LeerPage() {
                   />
                 </div>
                 <button type="submit" className="btn-dark" style={{ marginTop: 4, width: "100%", opacity: cap1Loading ? 0.7 : 1, cursor: cap1Loading ? "wait" : "pointer" }} disabled={cap1Loading}>
-                  {cap1Loading ? "ENVIANDO…" : "RECIBÍ EL PRIMER CAPÍTULO GRATIS"}
+                  {cap1Loading ? "ENVIANDO…" : "QUIERO EL PRIMER CAPÍTULO GRATIS →"}
                 </button>
               </form>
             </>

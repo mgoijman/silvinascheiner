@@ -10,8 +10,10 @@ export const metadata: Metadata = {
     "Conseguí Distancias del corazón de Silvina Scheiner en formato digital o físico. Entrega inmediata por email. Envíos a todo Argentina.",
 };
 
+// Silvina's MercadoPago payment link — update here if she generates a new one.
+// To get a fresh link: mercadopago.com.ar > Cobrar > Link de pago
 const MP_DIGITAL =
-  "https://www.mercadopago.com.ar/checkout/v1/payment/redirect/00d0fb5a-d0ad-45a5-99f1-96240c4842d5/payment-option-form/?preference-id=62905811-14aaa4df-acef-4214-ade1-a21aa2e7bb57&router-request-id=01910df3-4de5-4d55-85e0-249f6a28dd7f&p=1aa1d6af20e5630580d9889e932a0af5";
+  "https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=62905811-0c5eee52-f3e5-40e8-b163-2e6ac71f3711";
 const WA_FISICO = `https://wa.me/5491159264582?text=${encodeURIComponent("🏷️ [COMPRA - LIBRO FÍSICO]\n\nHola Silvina, me interesa comprar el libro físico de Distancias del corazón. ¿Cuál es el precio y cómo es el envío?")}`;
 const WA_AUDIO  = `https://wa.me/5491159264582?text=${encodeURIComponent("🏷️ [INTERÉS - AUDIOLIBRO]\n\nHola Silvina, me interesa el audiolibro de Distancias del corazón. ¿Cuándo va a estar disponible?")}`;
 const WA_DUDAS  = `https://wa.me/5491159264582?text=${encodeURIComponent("🏷️ [COMPRA - CONSULTA]\n\nHola Silvina, tengo una consulta sobre la compra del libro Distancias del corazón.")}`;
